@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, shrink-to-fit=no, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Simple Sidebar - Start Bootstrap Template</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link href="css/simple-sidebar.css" rel="stylesheet">
+
+    <script src="bower_components/jquery/dist/jquery.js"></script>
+    <script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script> 
+    <script SRC="bower_components/angular/angular.min.js" TYPE="text/javascript"></script>
+    <script SRC="bower_components/angular-ui-router/release/angular-ui-router.min.js" TYPE="text/javascript"></script>
+    <script src="bower_components/angular-ui-grid/ui-grid.min.js"></script>
+    <script src="bower_components/angular-file-upload/dist/angular-file-upload.min.js"></script>
+    <script src="bower_components/satellizer/dist/satellizer.min.js" type="text/javascript"></script>
+    <script src="bower_components/pdfmake/build/pdfmake.min.js"></script>
+    <script src="bower_components/pdfmake/build/vfs_fonts.js"></script>
+
+    <script type="text/javascript" src="js/app.js"></script>
+    <script type="text/javascript" src="js/factories/factoryUsuario.js"></script>
+    <script type="text/javascript" src="js/factories/factoryRutas.js"></script>
+    <script type="text/javascript" src="js/servicios/serviciosUsuarios.js"></script>
+    <script type="text/javascript" src="js/controladores/controlLogin.js"></script>
+    <script type="text/javascript" src="js/controladores/controlRegistro.js"></script>
+
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+</head>
+
+<body ng-app="app">
+
+    <div id="wrapper">
+        <div id="sidebar-wrapper">
+            <ul class="sidebar-nav">
+                <li class="sidebar-brand">
+                    <img src="img/PizzeriaLogo.png" style="width:80%;position:relative;">
+                </li>
+                <br><br><br>
+                <li>
+                    <a href="#/inicio"><span class="glyphicon glyphicon-home" style="left:-18px;margin-right:10px;" aria-hidden="true"></span> Inicio</a>
+                </li>
+                <li>
+                    <a href="#/login"><span class="glyphicon glyphicon-user" style="left:-18px;margin-right:10px;" aria-hidden="true"></span> Login</a>
+                </li>
+                <li>
+                    <a href="#/register"><span class="glyphicon glyphicon-pencil" style="left:-18px;margin-right:10px;" aria-hidden="true"></span>Registrarse</a>
+                </li>
+                <li>
+                    <a href="#"><span class="glyphicon glyphicon-map-marker" style="left:-18px;margin-right:10px;" aria-hidden="true"></span>Sucursales</a>
+                </li>
+                <li>
+                    <a href="#"><span class="glyphicon glyphicon-cutlery" style="left:-18px;margin-right:10px;" aria-hidden="true"></span>Productos</a>
+                </li>
+                <li>
+                    <a href="#"><span class="glyphicon glyphicon-fire" style="left:-18px;margin-right:10px;" aria-hidden="true"></span>Ofertas</a>
+                </li>
+                <li>
+                    <a href="#"><span class="glyphicon glyphicon-pawn" style="left:-18px;margin-right:10px;" aria-hidden="true"></span>Usuarios</a>
+                </li>
+                <li>
+                    <a href="#"><span class="glyphicon glyphicon-phone-alt" style="left:-18px;margin-right:10px;" aria-hidden="true"></span>Contact</a>
+                </li>
+            </ul>
+        </div>
+
+
+        <div id="page-content-wrapper" ui-view>
+        </div>
+    </div>
+    <!-- /#wrapper -->
+
+    <!-- Bootstrap Core JavaScript -->
+
+    <!-- Menu Toggle Script -->
+    <script>
+    $("#menu-toggle").click(function(e) {
+        e.preventDefault();
+        $("#wrapper").toggleClass("toggled");
+    });
+    </script>
+
+</body>
+
+</html>
