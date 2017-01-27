@@ -24,7 +24,7 @@ angular.module('app', ['app.controllers', 'ui.router', 'ui.grid', 'ui.grid.pagin
 
 .config(function ($stateProvider, $urlRouterProvider, $authProvider){
 
-	$authProvider.loginUrl ="sidebar-template/ws1/servidor/jwt/php/auth.php";
+	$authProvider.loginUrl ="TPFinalLab4_Murcia/ws1/servidor/jwt/php/auth.php";
 	$authProvider.tokenName = "PizzeriasArgento";
 	$authProvider.tokenPrefix="Aplicacion";
 	$authProvider.authHeader="data";
@@ -43,6 +43,115 @@ angular.module('app', ['app.controllers', 'ui.router', 'ui.grid', 'ui.grid.pagin
 			url:"/register",
 			templateUrl:"templates/Register.html",
 			controller:"controlRegistro"
+		})
+		.state("menuSucursales", {
+			url:"/sucursales",
+			templateUrl:"templates/Menu-Sucursales.html",
+			abstract:true
+		})
+		.state("menuSucursales.lista", {
+			url:"/lista",
+			views:{
+				"subVista":{
+					templateUrl:"templates/Suc-Lista.html"
+				}
+			}
+		})
+		.state("menuSucursales.alta", {
+			url:"/alta",
+			views:{
+				"subVista":{
+					templateUrl:"templates/Suc-Alta.html"
+				}
+			}
+		})
+
+		.state("menuProductos", {
+			url:"/productos",
+			templateUrl:"templates/Menu-Productos.html",
+			abstract:true
+		})
+		.state("menuProductos.lista", {
+			url:"/lista",
+			views:{
+				"subVista":{
+					templateUrl:"templates/Prod-Lista.html"
+				}
+			}
+		})
+		.state("menuProductos.alta", {
+			url:"/alta",
+			views:{
+				"subVista":{
+					templateUrl:"templates/Prod-Alta.html"
+				}
+			}
+		})
+
+		.state("menuPedidos", {
+			url:"/pedidos",
+			templateUrl:"templates/Menu-Pedidos.html",
+			abstract:true
+		})
+		.state("menuPedidos.lista", {
+			url:"/lista",
+			views:{
+				"subVista":{
+					templateUrl:"templates/Ped-Lista.html"
+				}
+			}
+		})
+		.state("menuPedidos.alta", {
+			url:"/alta",
+			views:{
+				"subVista":{
+					templateUrl:"templates/Ped-Alta.html"
+				}
+			}
+		})
+
+		.state("menuOfertas", {
+			url:"/ofertas",
+			templateUrl:"templates/Menu-Ofertas.html",
+			abstract:true
+		})
+		.state("menuOfertas.lista", {
+			url:"/lista",
+			views:{
+				"subVista":{
+					templateUrl:"templates/Ofer-Lista.html"
+				}
+			}
+		})
+		.state("menuOfertas.alta", {
+			url:"/alta",
+			views:{
+				"subVista":{
+					templateUrl:"templates/Ofer-Alta.html"
+				}
+			}
+		})
+
+		.state("menuUsuarios", {
+			url:"/usuarios",
+			templateUrl:"templates/Menu-Usuarios.html",
+			abstract:true
+		})
+		.state("menuUsuarios.lista", {
+			url:"/lista",
+			views:{
+				"subVista":{
+					templateUrl:"templates/Usu-Lista.html"
+				}
+			}
+		})
+		.state("menuUsuarios.alta", {
+			url:"/alta",
+			views:{
+				"subVista":{
+					templateUrl:"templates/Usu-Alta.html"
+				}
+			}
 		})
 
 
