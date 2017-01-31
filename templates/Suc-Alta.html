@@ -2,4 +2,52 @@
 
         <!-- Page Content -->
         <h3>ALTA DE SUCURSALES</h3>
+        <form class="formContainer" >
+
+            
+          <label><b>Nombre de Sucursal</b></label>
+          <input class="loginText" type="text" placeholder="Ingrese nombre de sucursal" name="uname" required>
+
+          <label><b>Dirección</b></label>
+          <input class="loginText" type="text" placeholder="Ingrese dirección del local" name="uname" required>
+
+          <label><b>Latitud</b></label>
+          <input class="loginText" type="text" placeholder="Ingrese latitud" name="uname" required>
+
+          <label><b>Longitud</b></label>
+          <input class="loginText" type="text" placeholder="Ingrese longitud" name="uname" required>
+
+          <label><b>Teléfono</b></label>
+          <input class="loginText" type="text" placeholder="Ingrese número de teléfono" name="uname" required>
+
+          <div nv-file-drop="" uploader="SubidorDeArchivos">
+                    <div nv-file-over="" uploader="SubidorDeArchivos" over-class="another-file-over-class" class="well my-drop-zone">
+                        Arrastrá acá para subir una foto (max. 1)
+                    </div>
+          </div>
+          <li ng-repeat="item in SubidorDeArchivos.queue" >
+            Archivo: <span ng-bind="item.file.name"></span><br/>
+            <div ng-show="SubidorDeArchivos.isHTML5" ng-thumb="{ file: item._file, height: 100 }"></div>
+
+            <button type="button" class="btn btn-warning btn-xs" ng-click="item.cancel()" ng-disabled="!item.isUploading">
+              <span class="glyphicon glyphicon-ban-circle"></span> Cancel
+            </button>
+
+            <button type="button" class="btn btn-danger btn-xs" ng-click="item.remove()">
+              <span class="glyphicon glyphicon-trash"></span> Remove
+            </button>
+          </li>  
+
+          <!-- <label><b>Password</b></label>
+          <input class="loginPassword" type="password" placeholder="Ingrese Password" name="psw" required>
+
+          <label><b>Repetir Password</b></label>
+          <input class="loginPassword" type="password" placeholder="Repita Password" name="psw" required> -->
+            
+          <button class="loginButton" type="submit">Dar de Alta</button>
+      
+          <!-- <input type="checkbox" checked="checked"> Remember me -->
+        
+
+      </form>
         <!-- /#page-content-wrapper -->

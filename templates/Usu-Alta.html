@@ -1,5 +1,37 @@
-<!-- Sidebar -->
+
 
         <!-- Page Content -->
         <h3>ALTA DE USUARIOS</h3>
+
+
+        <form class="formContainer" >
+
+            
+              <label><b>Nombre de Usuario</b></label>
+              <input class="loginText" type="text" placeholder="Ingrese nombre de usuario" name="uname" required>
+
+              <label><b>E-mail</b></label>
+              <input class="loginText" type="text" placeholder="Ingrese Dirección de E-mail" name="uname" required>
+
+              <label><b>Cargo</b></label>
+              <select class="formSelect">
+              	<option value="" disabled selected>Seleccione el Cargo</option>
+			    <option value="administrador">Administrador</option>
+			    <option value="encargado">Encargado</option>
+			    <option value="empleado">Empleado</option>
+			    <option value="cliente">Cliente</option>
+			  </select>
+
+              <!-- <label><b>Password</b></label>
+              <input class="loginPassword" type="password" placeholder="Ingrese Password" name="psw" required>
+
+              <label><b>Repetir Password</b></label>
+              <input class="loginPassword" type="password" placeholder="Repita Password" name="psw" required> -->
+                
+              <button class="loginButton" type="submit">Dar de Alta</button>
+          
+              <!-- <input type="checkbox" checked="checked"> Remember me -->
+            
+
+          </form>
         <!-- /#page-content-wrapper -->

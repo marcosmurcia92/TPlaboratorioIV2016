@@ -140,8 +140,8 @@
 /*////////////////////////////////////////////////////////////////////////*/
 
 /* Full-width input fields */
-.loginText, .loginPassword {
-    width: 80%;
+.loginText, .loginPassword,.formSelect {
+    width: 100%;
     padding: 12px 20px;
     margin: 8px 0;
     display: block;
@@ -157,7 +157,7 @@
     margin: 8px 0;
     border: none;
     cursor: pointer;
-    width: 80%;
+    width: 100%;
 }
 
 /* Set a style for all buttons */
@@ -194,6 +194,12 @@ img.avatar {
 .container {
     padding: 16px;
 }
+
+.modalContainer{
+    background-color: rgba(255,255,255,1);
+    width: 100%;
+    padding: 15px 25px;
+} 
 
 span.psw {
     float: right;
@@ -254,3 +260,13 @@ span.psw {
     from {transform: scale(0)} 
     to {transform: scale(1)}
 }
+
+/*////////////////////////////////////////////////////////////*/
+/*///                     ESTILOS PARA FORMS               ///*/
+/*////////////////////////////////////////////////////////////*/
+
+.formContainer{
+    background-color: rgba(255,255,255,0.75);
+    width: 80%;
+    padding: 15px 25px;
+} 

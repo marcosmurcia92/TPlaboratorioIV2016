@@ -45,7 +45,7 @@ angular.module('app', ['app.controllers', 'ui.router', 'ui.grid', 'ui.grid.pagin
 			controller:"controlRegistro"
 		})
 		.state("menuSucursales", {
-			url:"/sucursales",
+			url:"/menu-sucursales",
 			templateUrl:"templates/Menu-Sucursales.html",
 			abstract:true
 		})
@@ -61,13 +61,14 @@ angular.module('app', ['app.controllers', 'ui.router', 'ui.grid', 'ui.grid.pagin
 			url:"/alta",
 			views:{
 				"subVista":{
-					templateUrl:"templates/Suc-Alta.html"
+					templateUrl:"templates/Suc-Alta.html",
+					controller:"altaSucursalesCtrl"
 				}
 			}
 		})
 
 		.state("menuProductos", {
-			url:"/productos",
+			url:"/menu-productos",
 			templateUrl:"templates/Menu-Productos.html",
 			abstract:true
 		})
@@ -89,7 +90,7 @@ angular.module('app', ['app.controllers', 'ui.router', 'ui.grid', 'ui.grid.pagin
 		})
 
 		.state("menuPedidos", {
-			url:"/pedidos",
+			url:"/menu-pedidos",
 			templateUrl:"templates/Menu-Pedidos.html",
 			abstract:true
 		})
@@ -111,7 +112,7 @@ angular.module('app', ['app.controllers', 'ui.router', 'ui.grid', 'ui.grid.pagin
 		})
 
 		.state("menuOfertas", {
-			url:"/ofertas",
+			url:"/menu-ofertas",
 			templateUrl:"templates/Menu-Ofertas.html",
 			abstract:true
 		})
@@ -133,7 +134,7 @@ angular.module('app', ['app.controllers', 'ui.router', 'ui.grid', 'ui.grid.pagin
 		})
 
 		.state("menuUsuarios", {
-			url:"/usuarios",
+			url:"/menu-usuarios",
 			templateUrl:"templates/Menu-Usuarios.html",
 			abstract:true
 		})
@@ -141,7 +142,8 @@ angular.module('app', ['app.controllers', 'ui.router', 'ui.grid', 'ui.grid.pagin
 			url:"/lista",
 			views:{
 				"subVista":{
-					templateUrl:"templates/Usu-Lista.html"
+					templateUrl:"templates/Usu-Lista.html",
+					controller:"listaUsuariosCtrl"
 				}
 			}
 		})

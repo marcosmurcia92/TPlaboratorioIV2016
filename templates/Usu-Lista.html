@@ -1,5 +1,23 @@
 <!-- Sidebar -->
 
         <!-- Page Content -->
-        <h3>LISTA DE USUARIOS</h3>
+        <div>
+        	<h4>LISTA DE USUARIOS</h4>
+			<table class="table table-hover">
+				<tr>
+					<th>ID</th>
+				    <th>NOMBRE</th>
+				    <th>EMAIL</th>
+					<th>CARGO</th>
+				   
+				</tr>
+				
+				<tr ng-repeat="usu in ListaUsuarios">
+					<th>{{usu.idUsu}}</th>
+					<th>{{usu.nombre}}</th>
+					<th>{{usu.email}}</th>
+					<th>{{usu.cargo}}</th>
+				</tr>
+			</table>
+        </div>
         <!-- /#page-content-wrapper -->

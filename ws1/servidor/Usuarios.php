@@ -73,6 +73,7 @@ class Usuario
 		if($idUsu != NULL){
 			$obj = Usuario::TraerUnUsuario($idUsu);
 			
+			$this->idUsu = $obj->$idUsu;
 			$this->nombre = $obj->nombre;
 			$this->email = $obj->email;
 			$this->clave = $obj->clave;

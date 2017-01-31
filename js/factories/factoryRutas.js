@@ -5,11 +5,17 @@ angular
 
     objeto.nombre = "Factory de rutas";
 
-    objeto.RutaProductos = 'http://localhost:8080/Murcia.SPLab42016/ws1/productos/';
+    objeto.RutaOfertas = 'http://localhost:8000/TPFinalLab4_Murcia/ws1/ofertas/';
 
-    objeto.RutaUsuarios = 'http://localhost:8080/Murcia.SPLab42016/ws1/usuarios/';
+    objeto.RutaPedidos = 'http://localhost:8000/TPFinalLab4_Murcia/ws1/pedidos/';
 
-    objeto.RutaFotos = 'http://localhost:8080/Murcia.SPLab42016/ws1/servidor/nexoFoto.php';
+    objeto.RutaProductos = 'http://localhost:8000/TPFinalLab4_Murcia/ws1/productos/';
+
+    objeto.RutaSucursales = 'http://localhost:8000/TPFinalLab4_Murcia/ws1/sucursales/';
+
+    objeto.RutaUsuarios = 'http://localhost:8000/TPFinalLab4_Murcia/ws1/usuarios/';
+
+    objeto.RutaFotos = 'http://localhost:8000/TPFinalLab4_Murcia/ws1/servidor/nexoFoto.php';
 
     return objeto;
 
