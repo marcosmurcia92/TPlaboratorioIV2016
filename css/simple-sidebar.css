@@ -82,6 +82,14 @@
     color: #fff;
 }
 
+.sidebar-nav li h4 {
+    text-align: center;
+    display: block;
+    text-decoration: none;
+    color: #fff;
+    padding-right: 25px;
+}
+
 .sidebar-nav li a:hover {
     text-decoration: none;
     color: #fff;
@@ -269,4 +277,5 @@ span.psw {
     background-color: rgba(255,255,255,0.75);
     width: 80%;
     padding: 15px 25px;
+    border-radius: 10px;
 } 

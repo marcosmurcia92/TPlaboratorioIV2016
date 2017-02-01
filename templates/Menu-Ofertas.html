@@ -5,7 +5,7 @@
           <h3>Ofertas</h3>
           <ul class="nav nav-tabs">
             <li><a href="#/menu-ofertas/lista" >Lista de Ofertas</a></li>
-            <li><a href="#/menu-ofertas/alta">Nueva Oferta</a></li>
+            <li><a ng-show="(userActual.cargo != 'Cliente')" href="#/menu-ofertas/alta">Nueva Oferta</a></li>
           </ul>
           <br>
            <div ui-view name="subVista"></div>

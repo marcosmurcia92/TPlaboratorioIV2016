@@ -12,7 +12,6 @@ angular.module('app.controllers')
 
     		console.info("todos los usuarios", respuesta);
         $scope.ListaUsuarios = respuesta.data;
-        console.log($scope.ListaUsuarios[0].nombre);
 
     	}).catch(function (error){
 

@@ -4,32 +4,27 @@ angular
 
 		var nombre = "";
 		var email = "";
-		var tipo = "";
-		var foto = "";
+		var cargo = "";
 
 		return {
 
-			login:function(name,mail,type,photo){
+			login:function(name,mail,job){
 
 				nombre = name;
 				email = mail;
-				tipo = type;
-				foto = photo;
+				cargo = job;
 
 			},getName:function(){
 				return nombre;
 			},getEmail:function(){
 				return email;
-			},getTipo:function(){
-				return tipo;
-			},getFoto:function(){
-				return foto;
+			},getCargo:function(){
+				return cargo;
 			},getFullData:function(){
 				var jsonUsuario = {};
 				jsonUsuario.nombre = nombre;
 				jsonUsuario.email = email;
-				jsonUsuario.tipo = tipo;
-				jsonUsuario.foto = foto;
+				jsonUsuario.cargo = cargo;
 
 				return JSON.stringify(jsonUsuario);
 			}
