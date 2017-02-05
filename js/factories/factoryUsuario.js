@@ -16,6 +16,8 @@ angular
 				email = mail;
 				cargo = job;
 
+			},getId:function(){
+				return id;
 			},getName:function(){
 				return nombre;
 			},getEmail:function(){

@@ -1,6 +1,6 @@
 angular.module('app.controllers')
 
-.controller('listaPedidosCtrl', function($scope, $state, $timeout, SrvPedidos, SrvProductos, SrvSucursales, SrvUsuarios){
+.controller('listaPedidosCtrl', function($scope, $state, $timeout, UsuarioActual, SrvPedidos, SrvProductos, SrvSucursales, SrvUsuarios, SrvEncuestas){
 
 	$scope.titulo = "Listado de Pedidos";
 
@@ -26,6 +26,10 @@ angular.module('app.controllers')
     	nombre : "NOMBRE",
     	email: "MAIL"
     };
+
+    $scope.PedidoSeleccionado = {};
+
+    $scope.EncuestaRegistrada = {};
 
     $scope.MostrarProducto = function(idProducto){
         console.log("MI Producto ANTES", $scope.ProductoParaMostrar);
@@ -114,6 +118,35 @@ angular.module('app.controllers')
     // };
 
     $scope.RealizarEncuesta = function(pedido){
+        $scope.PedidoSeleccionado = pedido;
+        document.getElementById('id04').style.display='block';
+    };
+
+    $scope.RegistrarEncuesta = function(encuesta){
+        encuesta.idPed = $scope.PedidoSeleccionado.idPed;
+        encuesta.idCliente = $scope.PedidoSeleccionado.idCliente;
+        console.info("Encuesta Recibida", encuesta);
+        var jsonEncuesta = JSON.stringify(encuesta);
+        SrvEncuestas.insertarEncuesta(jsonEncuesta)
+            .then(function (respuesta){
+                console.info("Respuesta", respuesta);
+                $scope.PedidoSeleccionado.estado = "Cerrado";
+                var jsonPedido = JSON.stringify($scope.PedidoSeleccionado);
+                SrvPedidos.modificarPedido(jsonPedido)
+                    .then(function (respuesta){
+                        $timeout(function(){
+                            console.info(respuesta);
+                            document.getElementById('id04').style.display='noce';
+                        },100);
+                    }).catch(function (error){
+
+                        console.info("Error", error);
+                    })
+            }).catch(function (error){
+
+                $scope.ListaPedidos = [];
+
+            })
 
     };
 

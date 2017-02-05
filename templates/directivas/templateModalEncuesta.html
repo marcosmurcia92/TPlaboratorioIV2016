@@ -1,0 +1,16 @@
+<div style="width:100%;" align=center>
+
+	<h2><b>ENCUESTA DE SATISFACCIÓN</b></h2>
+	<h3>Calidad del Producto:</h3>
+	<span uib-rating ng-model="miEncuesta.valorProducto" max="max" read-only="isReadonly" on-hover="hoveringOver(value)" on-leave="overStar = null" titles="['one','two','three']" aria-labelledby="default-rating"></span><br><br>
+	<h3>Calidad de Atención:</h3>
+	<span uib-rating ng-model="miEncuesta.valorAtencion" max="max" read-only="isReadonly" on-hover="hoveringOver(value)" on-leave="overStar = null" titles="['one','two','three']" aria-labelledby="default-rating"></span><br><br>
+	<h3>Tiempo de Delivery:</h3>
+	<span uib-rating ng-model="miEncuesta.valorDemora" max="max" read-only="isReadonly" on-hover="hoveringOver(value)" on-leave="overStar = null" titles="['one','two','three']" aria-labelledby="default-rating"></span><br><br>
+	<h3>Comentario o Sugerencia: (máx. 300 caracteres)</h3>
+	<p style="color:gray;">(opcional)</p>
+	<textarea ng-model="miEncuesta.comentario" class="form-control" style="width:80%;" rows="5"></textarea><br>
+
+	<button ng-disabled="(miEncuesta.valorAtencion == 0 || miEncuesta.valorProducto == 0 || miEncuesta.valorDemora == 0)" class="btn btn-success" ng-click="registerparent({encuesta: miEncuesta})">REGISTRAR ENCUESTA</button>
+
+</div>

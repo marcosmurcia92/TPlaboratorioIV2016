@@ -25,7 +25,7 @@
 					<td>{{ped.estado}}</td>
 					<td>
 						<button class="btn btn-info" ng-click="CerrarPedido(ped)" ng-show="(ped.estado == 'Pendiente' && (ped.idCliente == userActual.id || userActual.cargo != 'Cliente') )">CERRAR PEDIDO</button>
-						<button class="btn btn-info" ng-click="RealizarEncuesta(ped)" ng-show="(ped.estado != 'Pendiente' && userActual.cargo == 'Cliente')">REALIZAR ENCUESTA</button>
+						<button class="btn btn-info" ng-click="RealizarEncuesta(ped)" ng-show="(ped.estado == 'Esperando Encuesta' && userActual.cargo == 'Cliente')">REALIZAR ENCUESTA</button>
 						<button class="btn btn-info" ng-click="ModificarPedido(ped)" ng-show="(userActual.cargo != 'Cliente')">MODIFICAR</button>
 					</td>
 				</tr>
@@ -65,6 +65,19 @@
 		      <modal-cliente clienteporparametro='ClienteParaMostrar'></modal-cliente>
 
 		      <button class="btn btn-danger" onclick="document.getElementById('id03').style.display='none'">CERRAR MODAL</button> 
+		    <!-- </div> -->
+
+		  </form>
+		</div>
+
+		<div id="id04" style="display:none;" class="modal">
+			  
+		  <form class="modal-content animate" >
+
+		    <!-- <div class="container"> -->
+		      <modal-encuesta pedidoporparametro='PedidoSeleccionado' registerparent="RegistrarEncuesta(encuesta)"></modal-encuesta>
+
+		      <button class="btn btn-danger" onclick="document.getElementById('id04').style.display='none'">CERRAR MODAL</button> 
 		    <!-- </div> -->
 
 		  </form>

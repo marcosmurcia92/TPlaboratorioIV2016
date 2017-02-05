@@ -5,7 +5,7 @@ class Encuesta
 //--------------------------------------------------------------------------------//
 //--ATRIBUTOS
 	public $idEnc;
-	public $idProd;
+	public $idPed;
 	public $idCliente;
 	public $valorProducto;
 	public $valorAtencion;
@@ -21,9 +21,9 @@ class Encuesta
 	{
 		return $this->idEnc;
 	}
-  	public function GetIdProducto()
+  	public function GetIdPedido()
 	{
-		return $this->idProd;
+		return $this->idPed;
 	}
 	public function GetIdCliente()
 	{
@@ -56,9 +56,9 @@ class Encuesta
 	{
 		$this->idEnc = $valor;
 	}
-	public function SetIdProducto($valor)
+	public function SetIdPedido($valor)
 	{
-		$this->idProd = $valor;
+		$this->idPed = $valor;
 	}
 	public function SetIdCliente($valor)
 	{
@@ -92,7 +92,7 @@ class Encuesta
 		if($id != NULL){
 			$obj = Encuesta::TraerUnaEncuesta($id);
 			
-			$this->idProd = $obj->idProd;
+			$this->idPed = $obj->idPed;
 			$this->idCliente = $obj->idCliente;
 			$this->valorProducto = $obj->valorProducto;
 			$this->valorAtencion = $obj->valorAtencion;
@@ -152,7 +152,7 @@ class Encuesta
 			$objetoAccesoDato = AccesoDatos::dameUnObjetoAcceso(); 
 			$consulta =$objetoAccesoDato->RetornarConsulta("
 				UPDATE encuestas 
-				SET idProd=:idProd,
+				SET idPed=:idPed,
 				idCliente=:idCliente,
 				valorProducto=:valorProducto,
 				valorAtencion=:valorAtencion,
@@ -160,7 +160,7 @@ class Encuesta
 				comentario:comentario
 				WHERE idEnc=:idEnc");
 			$consulta->bindValue(':idEnc',$encuesta->idEnc, PDO::PARAM_INT);
-			$consulta->bindValue(':idProd', $encuesta->idProd, PDO::PARAM_INT);
+			$consulta->bindValue(':idPed', $encuesta->idPed, PDO::PARAM_INT);
 			$consulta->bindValue(':idCliente', $encuesta->idCliente, PDO::PARAM_INT);
 			$consulta->bindValue(':valorProducto', $encuesta->valorProducto, PDO::PARAM_INT);
 			$consulta->bindValue(':valorAtencion', $encuesta->valorAtencion, PDO::PARAM_INT);
@@ -176,9 +176,9 @@ class Encuesta
 	public static function Insertarencuesta($encuesta)
 	{
 		$objetoAccesoDato = AccesoDatos::dameUnObjetoAcceso(); 
-		$consulta =$objetoAccesoDato->RetornarConsulta("INSERT into encuestas (idProd,idCliente,valorProducto,valorAtencion,valorDemora,comentario) values(:idProd,:idCliente,:valorProducto,:valorAtencion,:valorDemora,:comentario)");
+		$consulta =$objetoAccesoDato->RetornarConsulta("INSERT into encuestas (idPed,idCliente,valorProducto,valorAtencion,valorDemora,comentario) values(:idPed,:idCliente,:valorProducto,:valorAtencion,:valorDemora,:comentario)");
 		//$consulta =$objetoAccesoDato->RetornarConsulta("CALL Insertarencuesta (:nombre,:nombre,:dni,:foto1,:foto1,:foto1,:codFoto1");
-		$consulta->bindValue(':idProd', $encuesta->idProd, PDO::PARAM_INT);
+		$consulta->bindValue(':idPed', $encuesta->idPed, PDO::PARAM_INT);
 		$consulta->bindValue(':idCliente', $encuesta->idCliente, PDO::PARAM_INT);
 		$consulta->bindValue(':valorProducto', $encuesta->valorProducto, PDO::PARAM_INT);
 		$consulta->bindValue(':valorAtencion', $encuesta->valorAtencion, PDO::PARAM_INT);

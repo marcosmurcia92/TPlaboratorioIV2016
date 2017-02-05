@@ -11,6 +11,8 @@ angular
 
     objeto.RutaProductos = 'http://localhost:8000/TPFinalLab4_Murcia/ws1/productos/';
 
+    objeto.RutaEncuestas = 'http://localhost:8000/TPFinalLab4_Murcia/ws1/encuestas/';
+
     objeto.RutaSucursales = 'http://localhost:8000/TPFinalLab4_Murcia/ws1/sucursales/';
 
     objeto.RutaUsuarios = 'http://localhost:8000/TPFinalLab4_Murcia/ws1/usuarios/';
