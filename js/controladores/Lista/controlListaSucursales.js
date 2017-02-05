@@ -7,6 +7,20 @@ angular.module('app.controllers')
 
     $scope.ListaSucursales = [];
 
+    $scope.SucursalParaMostrar = {
+    	nombre : "NOMBRE",
+    	localidad : "LOCALIDAD",
+        foto1 : "placeholder1.png",
+        foto2 : "placeholder1.png",
+        foto3 : "placeholder1.png"
+    };
+
+    $scope.MostrarSucursal = function(sucursal){
+    	$scope.SucursalParaMostrar = sucursal;
+    	console.log("MI SUCURSAL", $scope.SucursalParaMostrar);
+    	document.getElementById('id01').style.display='block';
+    };
+
     SrvSucursales.traerTodas()
     	.then(function (respuesta){
 

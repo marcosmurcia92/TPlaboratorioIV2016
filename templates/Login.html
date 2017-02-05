@@ -5,7 +5,7 @@
   
           <div class="modal-content animate" >
 
-            <div class="container" >
+            <div class="modalContainer" >
               <label><b>Nombre de Usuario</b></label>
               <input class="loginText" type="text" placeholder="Ingrese nombre de usuario" ng-model="usuario.nombre" required>
 
@@ -17,10 +17,12 @@
                 
               <button class="loginButton" ng-click="Guardar()">Login</button>
 
+              <center>
               <button class="fixedLoginButton" ng-click="IngresoAdmin()">Administrador</button>
               <button class="fixedLoginButton" ng-click="IngresoEncargado()">Encargado</button>
               <button class="fixedLoginButton" ng-click="IngresoEmpleado()">Empleado</button>
               <button class="fixedLoginButton" ng-click="IngresoCliente()">Cliente</button>
+              </center>
               
               <button type="button" onclick="window.location.href='#/inicio'" class="loginButton" style="background-color:#f44336;">Cancel</button>
               <!-- <input type="checkbox" checked="checked"> Remember me -->

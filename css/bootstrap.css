@@ -2333,6 +2333,7 @@ table td[class*="col-"],
 table th[class*="col-"] {
   position: static;
   display: table-cell;
+  width: auto;
   float: none;
 }
 .table > thead > tr > td.active,

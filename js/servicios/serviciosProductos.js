@@ -6,10 +6,14 @@ angular
 
 		this.traerTodos = TraerTodos;
 
+		this.traerUno = TraerUno;
+
 		this.borrarProducto = BorrarProducto;
 
 		console.log("rutaProd", factoryRutas.RutaProductos);
 
+		this.traerUrlFotos = TraerUrlFotos;
+		
 		var url = factoryRutas.RutaProductos;
 
 		function InsertarProducto(producto){
@@ -49,6 +53,23 @@ angular
 
 		};
 
+		function TraerUno(id){
+
+			return $http.get(url+id)
+				.then(function (respuesta){
+
+					console.log(respuesta);
+
+					return respuesta;
+
+				}).catch(function (error){
+
+					console.info("error", error);
+
+				})
+
+		};
+
 
 		function BorrarProducto(id){
 
@@ -63,6 +84,10 @@ angular
 
 				})
 
+		};
+
+		function TraerUrlFotos(){
+			return factoryRutas.RutaFotos;
 		};
 
 		

@@ -2,4 +2,71 @@
 
         <!-- Page Content -->
         <h3>LISTA DE PEDIDOS</h3>
+        <table class="table table-hover table-responsive" width="100%" border="0" cellspacing="0" cellpadding="0">
+				<tr>
+					<th>ID</th>
+				    <th>PRODUCTO</th>
+				    <th>SUCURSAL</th>
+				    <th>CLIENTE</th>
+				    <th>CANTIDAD PEDIDA</th>
+				    <th>FECHA DE PEDIDO</th>
+				    <th>MONTO TOTAL</th>
+				    <th>ESTADO</th>
+				    <th>ACCIÓN</th>
+				</tr>
+				<tr ng-repeat="ped in ListaPedidos">
+					<td>{{ped.idPed}}</td>
+					<td><button class="btn btn-info" ng-click="MostrarProducto(ped.idProd)">VER PRODUCTO</button></td>
+					<td><button class="btn btn-info" ng-click="MostrarSucursal(ped.idSuc)">VER SUCURSAL</button></td>
+					<td><button class="btn btn-info" ng-click="MostrarCliente(ped.idCliente)">VER CLIENTE</button></td>
+					<td>{{ped.cantPedida}}</td>
+					<td>{{ped.fechaPedido | date : "dd'/'MM'/'yyyy"}}</td>
+					<td>${{ped.monto}}</td>
+					<td>{{ped.estado}}</td>
+					<td>
+						<button class="btn btn-info" ng-click="CerrarPedido(ped)" ng-show="(ped.estado == 'Pendiente' && (ped.idCliente == userActual.id || userActual.cargo != 'Cliente') )">CERRAR PEDIDO</button>
+						<button class="btn btn-info" ng-click="RealizarEncuesta(ped)" ng-show="(ped.estado != 'Pendiente' && userActual.cargo == 'Cliente')">REALIZAR ENCUESTA</button>
+						<button class="btn btn-info" ng-click="ModificarPedido(ped)" ng-show="(userActual.cargo != 'Cliente')">MODIFICAR</button>
+					</td>
+				</tr>
+		</table>
+
+		<div id="id01" style="display:none;" class="modal">
+			  
+		  <form class="modal-content animate" >
+
+		    <!-- <div class="container"> -->
+		      <modal-producto productoporparametro='ProductoParaMostrar'></modal-producto>
+
+		      <button class="btn btn-danger" onclick="document.getElementById('id01').style.display='none'">CERRAR MODAL</button> 
+		    <!-- </div> -->
+
+		  </form>
+		</div>
+
+		<div id="id02" style="display:none;" class="modal">
+			  
+		  <form class="modal-content animate" >
+
+		    <!-- <div class="container"> -->
+		      <modal-sucursal sucursalporparametro='SucursalParaMostrar'></modal-sucursal>
+
+		      <button class="btn btn-danger" onclick="document.getElementById('id02').style.display='none'">CERRAR MODAL</button> 
+		    <!-- </div> -->
+
+		  </form>
+		</div>
+
+		<div id="id03" style="display:none;" class="modal">
+			  
+		  <form class="modal-content animate" >
+
+		    <!-- <div class="container"> -->
+		      <modal-cliente clienteporparametro='ClienteParaMostrar'></modal-cliente>
+
+		      <button class="btn btn-danger" onclick="document.getElementById('id03').style.display='none'">CERRAR MODAL</button> 
+		    <!-- </div> -->
+
+		  </form>
+		</div>
         <!-- /#page-content-wrapper -->

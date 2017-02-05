@@ -6,6 +6,8 @@ angular
 
 		this.traerTodos = TraerTodos;
 
+		this.traerUno = TraerUno;
+
 		this.borrarUsuario = BorrarUsuario;
 
 		this.modificarUsuario = ModificarUsuario;
@@ -59,6 +61,23 @@ angular
 		function TraerTodos(){
 
 			return $http.get(url)
+				.then(function (respuesta){
+
+					console.log(respuesta);
+
+					return respuesta;
+
+				}).catch(function (error){
+
+					console.info("error", error);
+
+				})
+
+		};
+
+		function TraerUno(id){
+
+			return $http.get(url+id)
 				.then(function (respuesta){
 
 					console.log(respuesta);

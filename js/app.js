@@ -1,4 +1,4 @@
-angular.module('app', ['app.controllers', 'ui.router', 'ui.grid', 'ui.grid.pagination', 'ui.grid.resizeColumns', 'ui.grid.selection', 'ui.grid.exporter', 'ui.grid.edit', 'angularFileUpload', 'satellizer'])
+angular.module('app', ['app.controllers', 'ngMap', 'ngAnimate', 'ngTouch', 'ngFader', 'ui.router', 'ui.grid', 'ui.grid.pagination', 'ui.grid.resizeColumns', 'ui.grid.selection', 'ui.grid.exporter', 'ui.grid.edit', 'angularFileUpload', 'satellizer'])
 
 .run(function($rootScope,$auth,UsuarioActual,$state){
 
@@ -101,7 +101,8 @@ angular.module('app', ['app.controllers', 'ui.router', 'ui.grid', 'ui.grid.pagin
 			url:"/alta",
 			views:{
 				"subVista":{
-					templateUrl:"templates/Prod-Alta.html"
+					templateUrl:"templates/Prod-Alta.html",
+					controller:"altaProductosCtrl"
 				}
 			}
 		})
@@ -125,7 +126,8 @@ angular.module('app', ['app.controllers', 'ui.router', 'ui.grid', 'ui.grid.pagin
 			url:"/alta",
 			views:{
 				"subVista":{
-					templateUrl:"templates/Ped-Alta.html"
+					templateUrl:"templates/Ped-Alta.html",
+					controller:"altaPedidosCtrl"
 				}
 			}
 		})
@@ -149,7 +151,8 @@ angular.module('app', ['app.controllers', 'ui.router', 'ui.grid', 'ui.grid.pagin
 			url:"/alta",
 			views:{
 				"subVista":{
-					templateUrl:"templates/Ofer-Alta.html"
+					templateUrl:"templates/Ofer-Alta.html",
+					controller:"altaOfertasCtrl"
 				}
 			}
 		})
@@ -173,7 +176,8 @@ angular.module('app', ['app.controllers', 'ui.router', 'ui.grid', 'ui.grid.pagin
 			url:"/alta",
 			views:{
 				"subVista":{
-					templateUrl:"templates/Usu-Alta.html"
+					templateUrl:"templates/Usu-Alta.html",
+					controller:"altaUsuariosCtrl"
 				}
 			}
 		})

@@ -6,24 +6,31 @@
 			<table class="table table-hover">
 				<tr>
 					<th>ID</th>
+					<th>NOMBRE</th>
 				    <th>LOCALIDAD</th>
-				    <th>DIRECCION</th>
 				    <th>FICHA COMPLETA</th>
-			
-				   
 				</tr>
-				<tr> <!-- ng-repeat="sucursal in listado track by $index" -->
-					<td> 1 </td>
-					<td> Florencio Varela </td>
-					<td> Curupayti 2082 </td>
-					<td> <button class="btn btn-info">VER FICHA COMPLETA</button> </td>
-				</tr>
-				<tr> <!-- ng-repeat="sucursal in listado track by $index" -->
-					<td> 1 </td>
-					<td> Florencio Varela </td>
-					<td> Curupayti 2082 </td>
-					<td> <button class="btn btn-info">VER FICHA COMPLETA</button> </td>
+
+				<tr ng-repeat="suc in ListaSucursales">
+					<td>{{suc.idSuc}}</td>
+					<td>{{suc.nombre}}</td>
+					<td>{{suc.localidad}}</td>
+					<td> <button class="btn btn-info" ng-click="MostrarSucursal(suc)" >VER FICHA COMPLETA</button> </td>
 				</tr>
 			</table>
+	        <!-- Modal -->
+
+			<div id="id01" style="display:none;" class="modal">
+			  
+			  <form class="modal-content animate" >
+
+			    <!-- <div class="container"> -->
+			      <modal-sucursal sucursalporparametro='SucursalParaMostrar'></modal-sucursal>
+
+			      <button class="btn btn-danger" onclick="document.getElementById('id01').style.display='none'">CERRAR MODAL</button> 
+			    <!-- </div> -->
+
+			  </form>
+			</div>
         </div>
         <!-- /#page-content-wrapper -->

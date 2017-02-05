@@ -6,10 +6,14 @@ angular
 
 		this.traerTodas = TraerTodas;
 
+		this.traerUna = TraerUna;
+
 		this.borrarSucursal = BorrarSucursal;
 
 		console.log("rutaSuc", factoryRutas.RutaSucursales);
 
+		this.traerUrlFotos = TraerUrlFotos;
+		
 		var url = factoryRutas.RutaSucursales;
 
 		function InsertarSucursal(sucursal){
@@ -50,6 +54,24 @@ angular
 		};
 
 
+		function TraerUna(id){
+
+			return $http.get(url+id)
+				.then(function (respuesta){
+
+					console.log(respuesta);
+
+					return respuesta;
+
+				}).catch(function (error){
+
+					console.info("error", error);
+
+				})
+
+		};
+
+
 		function BorrarSucursal(id){
 
 			return $http.delete(url + id)
@@ -63,6 +85,10 @@ angular
 
 				})
 
+		};
+
+		function TraerUrlFotos(){
+			return factoryRutas.RutaFotos;
 		};
 
 		

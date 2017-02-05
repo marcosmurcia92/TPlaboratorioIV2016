@@ -2,14 +2,16 @@ angular
 	.module('app')
 	.factory('UsuarioActual', [function(){
 
+		var id = "";
 		var nombre = "";
 		var email = "";
 		var cargo = "";
 
 		return {
 
-			login:function(name,mail,job){
+			login:function(userId,name,mail,job){
 
+				id = userId;
 				nombre = name;
 				email = mail;
 				cargo = job;
@@ -22,6 +24,7 @@ angular
 				return cargo;
 			},getFullData:function(){
 				var jsonUsuario = {};
+				jsonUsuario.id = id;
 				jsonUsuario.nombre = nombre;
 				jsonUsuario.email = email;
 				jsonUsuario.cargo = cargo;

@@ -1,6 +1,6 @@
 angular.module('app.controllers')
 
-.controller('altaProductosCtrl', function($scope, $state, $timeout,FileUploader,SrvProductos){
+.controller('altaProductosCtrl', function($scope, $state, $timeout,FileUploader,SrvProductos,UsuarioActual){
 	
 	$scope.SubidorDeArchivos=new FileUploader({url:SrvProductos.traerUrlFotos()});
   	$scope.SubidorDeArchivos.queueLimit = 3;
@@ -47,7 +47,7 @@ angular.module('app.controllers')
 		if($scope.SubidorDeArchivos.queue[1]!=undefined)
 		{
 			var nombreFoto = $scope.SubidorDeArchivos.queue[1]._file.name;
-			$scope.prod.foto3=nombreFoto;
+			$scope.prod.foto2=nombreFoto;
 		}
 		if($scope.SubidorDeArchivos.queue[2]!=undefined)
 		{

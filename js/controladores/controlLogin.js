@@ -54,7 +54,7 @@ angular.module('app.controllers', [])
 	    console.info("correcto", response); //Sabemos que nos devuelve un token correcto SOLO CON EL ISAUTHENTICATED
 	    if ($auth.isAuthenticated()){
 	    	console.info("token", $auth.getPayload());
-	    	UsuarioActual.login($auth.getPayload().nombre, $auth.getPayload().email,  $auth.getPayload().cargo);
+	    	UsuarioActual.login($auth.getPayload().id,$auth.getPayload().nombre, $auth.getPayload().email,  $auth.getPayload().cargo);
 	    	$rootScope.userActual = JSON.parse(UsuarioActual.getFullData());
 	    	$rootScope.userActual.login = true;
 	    	console.log($rootScope.userActual);

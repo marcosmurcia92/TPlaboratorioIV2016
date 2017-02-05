@@ -7,6 +7,21 @@ angular.module('app.controllers')
 
     $scope.ListaProductos = [];
 
+    $scope.ProductoParaMostrar = {
+    	nombre : "NOMBRE",
+    	precio : "123",
+        foto1 : "placeholder1.png",
+        foto2 : "placeholder1.png",
+        foto3 : "placeholder1.png"
+    };
+
+    $scope.MostrarProducto = function(producto){
+        console.log("MI Producto ANTES", $scope.ProductoParaMostrar);
+    	$scope.ProductoParaMostrar = producto;
+        console.log("MI Producto DESPUES", $scope.ProductoParaMostrar);
+    	document.getElementById('id01').style.display='block';
+    };
+
     SrvProductos.traerTodos()
     	.then(function (respuesta){
 

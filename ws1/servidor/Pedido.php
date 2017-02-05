@@ -167,8 +167,8 @@ class Pedido
 				idCliente=:idCliente,
 				monto=:monto,
 				fechaPedido=:fechaPedido,
-				cantPedida:cantPedida,
-				estado:estado
+				cantPedida=:cantPedida,
+				estado=:estado
 				WHERE idPed=:idPed");
 			$consulta->bindValue(':idPed',$pedido->idPed, PDO::PARAM_INT);
 			$consulta->bindValue(':idProd', $pedido->idProd, PDO::PARAM_INT);

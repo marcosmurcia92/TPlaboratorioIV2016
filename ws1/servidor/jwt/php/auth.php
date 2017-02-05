@@ -16,6 +16,7 @@ $usuarioActual = Usuario::AutenticarUsuario($usuario->email, $usuario->nombre, $
 if (!is_null($usuarioActual)) {
 	$key = "aaaa";
 	$ClaveDeEncriptacion="estaeslaclave";
+	$token["id"]=$usuarioActual->idUsu;
 	$token["nombre"]=$usuarioActual->nombre;
 	$token["cargo"]=$usuarioActual->cargo;
 	$token["email"] = $usuarioActual->email;

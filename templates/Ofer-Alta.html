@@ -2,4 +2,35 @@
 
         <!-- Page Content -->
         <h3>ALTA DE OFERTAS</h3>
+        <form class="formContainer" >
+
+            
+          <label><b>Producto Ofertado ({{ped.idProd}})</b></label>
+          <select class="formSelect" ng-model="ped.idProd"  required>
+              <option ng-repeat="prod in ListaProductos" value="{{prod.idProd}}">{{prod.idProd}}  {{prod.nombre}}</option>  
+          </select>
+
+          <label><b>Sucursal de Origen</b></label>
+          <select class="formSelect" ng-model="ped.idSuc"  required>
+              <option ng-repeat="suc in ListaSucursales" value="{{suc.idSuc}}">{{suc.idSuc}}  {{suc.nombre}}</option>  
+          </select>
+
+          <label><b>Fecha de Fin de Oferta</b></label>
+          <input class="loginText" ng-model="ped.fechaFin" type="date"  name="pedFechaFin" required>
+
+          <label><b>Porcentaje de Descuento %</b></label>
+         <input class="loginText" ng-model="ped.descuento" type="number" min='1' max="99" placeholder='0' name="prodPrecio" required>
+
+          <!-- <label><b>Password</b></label>
+          <input class="loginPassword" type="password" placeholder="Ingrese Password" name="psw" required>
+
+          <label><b>Repetir Password</b></label>
+          <input class="loginPassword" type="password" placeholder="Repita Password" name="psw" required> -->
+            
+          <button class="loginButton" ng-click="Guardar()">Registrar</button>
+      
+          <!-- <input type="checkbox" checked="checked"> Remember me -->
+        
+
+      </form>
         <!-- /#page-content-wrapper -->

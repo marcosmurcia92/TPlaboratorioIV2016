@@ -11,6 +11,8 @@ angular.module('app.controllers')
     	.then(function (respuesta){
 
     		console.info("todos los usuarios", respuesta);
+
+    		
         $scope.ListaUsuarios = respuesta.data;
 
     	}).catch(function (error){

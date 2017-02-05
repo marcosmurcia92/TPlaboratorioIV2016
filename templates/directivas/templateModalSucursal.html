@@ -1,0 +1,22 @@
+<div style="width:100%;" align=center>
+
+	<h3>Nombre: {{miSucursal.nombre}}</h3>
+	<h3>Localidad: {{miSucursal.localidad}}</h3>
+	<h3>Dirección: {{miSucursal.direccion}}</h3>
+	<h3>Teléfono: {{miSucursal.telefono}}</h3>
+
+	<h3>FOTOS: </h3><br>
+	<ng-fader miobjetoconfotos='miSucursal'></ng-fader>
+
+	<h3>UBICACION: </h3><br>
+	<ng-map center="[{{miSucursal.lat}}, {{miSucursal.lng}}]" style="width:500px;">
+  		<!-- <marker position = "[{{miSucursal.lat}}, {{miSucursal.lng}}]" title="{{miSucursal.nombre}}">
+  		</marker> -->
+  		<directions
+          draggable="true"
+          travel-mode="DRIVING"
+          origin="{{miSucursal.lat}}, {{miSucursal.lng}}"
+          destination="current-location">
+        </directions>
+  	</ng-map>
+</div>
