@@ -11,6 +11,9 @@
           <label><b>Dirección</b></label>
           <input class="loginText" ng-model="suc.direccion" type="text" placeholder="Ingrese dirección del local" name="sucDir" required>
 
+          <label><b>Localidad</b></label>
+          <input class="loginText" ng-model="suc.localidad" type="text" placeholder="Ingrese la localidad" name="sucLoc" required>
+
           <label><b>Latitud</b></label>
           <input class="loginText" ng-model="suc.lat" type="text" placeholder="Ingrese latitud" name="sucLat" required>
 
@@ -20,11 +23,9 @@
           <label><b>Teléfono</b></label>
           <input class="loginText" ng-model="suc.telefono" type="text" placeholder="Ingrese número de teléfono" name="sucTel" required>
 
-          <div nv-file-drop="" uploader="SubidorDeArchivos">
-                    <div nv-file-over="" uploader="SubidorDeArchivos" over-class="another-file-over-class" class="well my-drop-zone">
-                        Arrastrá acá para subir una foto (Seleccionar 3 fotos)
-                    </div>
-          </div>
+          <label><b>Fotos de la Sucursal:</b></label>
+          <input class="loginText" type="file" nv-file-select uploader="SubidorDeArchivos">
+
           <li ng-repeat="item in SubidorDeArchivos.queue" >
             Archivo: <span ng-bind="item.file.name"></span><br/>
             <div ng-show="SubidorDeArchivos.isHTML5" ng-thumb="{ file: item._file, height: 100 }"></div>

@@ -14,10 +14,37 @@
 				</tr>
 				<tr ng-repeat="ofer in ListaOfertas">
 					<td>{{ofer.idOfer}}</td>
-					<td><button class="btn btn-info">VER PRODUCTO</button></td>
-					<td><button class="btn btn-info">VER SUCURSAL</button></td>
+					<td><button class="btn btn-info" ng-click="MostrarProducto(ofer.idProd)">VER PRODUCTO</button></td>
+					<td><button class="btn btn-info" ng-click="MostrarSucursal(ofer.idSuc)">VER SUCURSAL</button></td>
 					<td>{{ofer.fechaFin}}</td>
 					<td>{{ofer.descuento}}%</td>
 				</tr>
 		</table>
+
+		<div id="id01" style="display:none;" class="modal">
+			  
+		  <form class="modal-content animate" >
+
+		    <!-- <div class="container"> -->
+		      <modal-producto productoporparametro='ProductoParaMostrar'></modal-producto>
+
+		      <button class="btn btn-danger" onclick="document.getElementById('id01').style.display='none'">CERRAR MODAL</button> 
+		    <!-- </div> -->
+
+		  </form>
+		</div>
+
+		<div id="id02" style="display:none;" class="modal">
+			  
+		  <form class="modal-content animate" >
+
+		    <!-- <div class="container"> -->
+		      <modal-sucursal sucursalporparametro='SucursalParaMostrar'></modal-sucursal>
+
+		      <button class="btn btn-danger" onclick="document.getElementById('id02').style.display='none'">CERRAR MODAL</button> 
+		    <!-- </div> -->
+
+		  </form>
+		  
+		</div>
         <!-- /#page-content-wrapper -->

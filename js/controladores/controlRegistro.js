@@ -4,17 +4,15 @@ angular.module('app.controllers')
 
 	$scope.usuario = {};
 	$scope.usuario.nombre = "Jacinto";
-	$scope.usuario.email = "usuario1@usuario1.com"
-	$scope.usuario.clave = 1234;
-	$scope.usuario.copiaclave = 1234;
+	$scope.usuario.email = "usuario1@usuario1.com";
+	$scope.usuario.cargo = "Cliente";
+	$scope.usuario.habilitado = 1;
 
 	$scope.Guardar = function(){
 
-		$scope.usuario.habilitado = true;
-
 		var usuarioJson = JSON.stringify($scope.usuario);
 
-		SrvUsuarios.InsertarUsuario(usuarioJson)
+		SrvUsuarios.insertarUsuario(usuarioJson)
 			.then(function (respuesta){
 
 				console.info("Respuesta", respuesta);

@@ -8,6 +8,8 @@ angular
 
 		this.traerUno = TraerUno;
 
+		this.traerUnoPorSucursal = TraerUnoPorSucursal;
+
 		this.borrarUsuario = BorrarUsuario;
 
 		this.modificarUsuario = ModificarUsuario;
@@ -78,6 +80,23 @@ angular
 		function TraerUno(id){
 
 			return $http.get(url+id)
+				.then(function (respuesta){
+
+					console.log(respuesta);
+
+					return respuesta;
+
+				}).catch(function (error){
+
+					console.info("error", error);
+
+				})
+
+		};
+
+		function TraerUnoPorSucursal(idSucu){
+
+			return $http.get(url+"sucursal/"+idSucu)
 				.then(function (respuesta){
 
 					console.log(respuesta);

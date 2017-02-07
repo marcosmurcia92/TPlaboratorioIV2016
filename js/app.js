@@ -182,6 +182,31 @@ angular.module('app', ['app.controllers', 'ngMap', 'ngAnimate', 'ngTouch', 'ngFa
 			}
 		})
 
+		.state("menuAdministracion", {
+			url:"/menu-administracion",
+			templateUrl:"templates/Menu-Administracion.html",
+			controller:"MenuCtrl",
+			abstract:true
+		})
+		.state("menuAdministracion.graficos", {
+			url:"/graficos",
+			views:{
+				"subVista":{
+					templateUrl:"templates/Adm-Graf.html",
+					controller:"graficosCtrl"
+				}
+			}
+		})
+		.state("menuAdministracion.exportar", {
+			url:"/exportar",
+			views:{
+				"subVista":{
+					templateUrl:"templates/Adm-Exp.html",
+					controller:"exportarCtrl"
+				}
+			}
+		})
+
 
 	$urlRouterProvider.otherwise("/inicio");
 

@@ -43,13 +43,13 @@ angular
 
 	})
 
-	.directive('modalCliente', function(){
+	.directive('modalUsuario', function(){
 
 		return {
-			scope: {miCliente: '=clienteporparametro'},
+			scope: {miUsuario: '=usuarioporparametro'},
 			replace: true,
 			restrict: 'E',
-			templateUrl: 'templates/directivas/templateModalCliente.html'
+			templateUrl: 'templates/directivas/templateModalUsuario.html'
 		};
 
 	})

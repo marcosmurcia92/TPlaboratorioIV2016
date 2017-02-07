@@ -10,6 +10,8 @@ angular
 
 		this.borrarProducto = BorrarProducto;
 
+		this.modificarProducto = ModificarProducto;
+
 		console.log("rutaProd", factoryRutas.RutaProductos);
 
 		this.traerUrlFotos = TraerUrlFotos;
@@ -21,6 +23,25 @@ angular
 			console.log(producto);
 			//return $http.post('http://baratinga.hol.es/ws1/producto/' + producto)
 			return $http.post(url + producto)
+				.then(function (respuesta){
+
+					console.log(respuesta);
+
+					return respuesta;
+
+				}).catch(function (error){
+
+					console.log(error);
+
+				})
+
+		};
+
+		function ModificarProducto(producto){
+
+			console.log(producto);
+			//return $http.post('http://baratinga.hol.es/ws1/producto/' + producto)
+			return $http.put(url + producto)
 				.then(function (respuesta){
 
 					console.log(respuesta);

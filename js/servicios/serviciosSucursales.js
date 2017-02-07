@@ -10,6 +10,8 @@ angular
 
 		this.borrarSucursal = BorrarSucursal;
 
+		this.modificarSucursal = ModificarSucursal;
+
 		console.log("rutaSuc", factoryRutas.RutaSucursales);
 
 		this.traerUrlFotos = TraerUrlFotos;
@@ -21,6 +23,25 @@ angular
 			console.log(sucursal);
 			//return $http.post('http://baratinga.hol.es/ws1/Sucursal/' + Sucursal)
 			return $http.post(url + sucursal)
+				.then(function (respuesta){
+
+					console.log(respuesta);
+
+					return respuesta;
+
+				}).catch(function (error){
+
+					console.log(error);
+
+				})
+
+		};
+
+		function ModificarSucursal(sucursal){
+
+			console.log(sucursal);
+			//return $http.post('http://baratinga.hol.es/ws1/sucursal/' + sucursal)
+			return $http.put(url + sucursal)
 				.then(function (respuesta){
 
 					console.log(respuesta);

@@ -1,6 +1,6 @@
 angular.module('app.controllers')
 
-.controller('altaSucursalesCtrl', function($scope, $state, $timeout,FileUploader,SrvSucursales){
+.controller('altaSucursalesCtrl', function($scope, $state, $timeout,UsuarioActual,FileUploader,SrvSucursales){
 	
 	$scope.SubidorDeArchivos=new FileUploader({url:SrvSucursales.traerUrlFotos()});
   	$scope.SubidorDeArchivos.queueLimit = 3;
@@ -8,6 +8,7 @@ angular.module('app.controllers')
 	$scope.usuario = JSON.parse(UsuarioActual.getFullData());
 
 	$scope.suc = {};
+	$scope.suc.encargado = 0;
 	$scope.suc.foto1 = "sin foto";
 	$scope.suc.foto2 = "sin foto";
 	$scope.suc.foto3 = "sin foto";
@@ -47,7 +48,7 @@ angular.module('app.controllers')
 		if($scope.SubidorDeArchivos.queue[1]!=undefined)
 		{
 			var nombreFoto = $scope.SubidorDeArchivos.queue[1]._file.name;
-			$scope.suc.foto3=nombreFoto;
+			$scope.suc.foto2=nombreFoto;
 		}
 		if($scope.SubidorDeArchivos.queue[2]!=undefined)
 		{
