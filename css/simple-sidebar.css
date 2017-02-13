@@ -280,6 +280,12 @@ span.psw {
     padding: 15px 25px;
     border-radius: 10px;
 } 
+.graphContainer{
+    background-color: rgba(255,255,255,0.5);
+    width: 80%;
+    padding: 15px 25px;
+    border-radius: 10px;
+} 
 
 /*.rating {
     float:left;

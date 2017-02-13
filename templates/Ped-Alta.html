@@ -3,7 +3,7 @@
         <!-- Page Content -->
         <h3>ALTA DE PEDIDOS</h3>
         <div>
-          <form class="formContainer" >
+          <form class="formContainer"  id="FormIngreso" name="FormIngreso">
 
             
           <label><b>Producto Pedido ({{ped.idProd}})</b></label>
@@ -19,27 +19,20 @@
               <option ng-repeat="suc in ListaSucursales" value="{{suc.idSuc}}">{{suc.idSuc}}  {{suc.nombre}}</option>  
           </select>
 
-          <label><b>Fecha del Pedido</b></label>
-          <input class="loginText" ng-model="ped.fechaPedido" type="date"  name="pedFechaFin" required>
-
-          <!-- <label><b>Porcentaje de Descuento %</b></label>
-         <input class="loginText" ng-model="ped.descuento" type="number" min='1' max="99" placeholder='0' name="prodPrecio" required> -->
+          <label><b>Fecha del Pedido (Disponible desde {{minDate}} hasta {{maxDate}})</b></label>
+          <input class="loginText" ng-model="ped.fechaPedido" type="date" min="{{minDate}}" max="{{maxDate}}"  name="pedFechaFin" required>
+          <span style="color:#FF0000;float:right;font-size:18;margin-left:200" ng-show='FormIngreso.pedFechaFin.$error.required'>* Ingrese una fecha</span><br>
+          <span style="color:#FF0000;float:right;font-size:18;margin-left:200" ng-show=''>* La fecha ingresada no esta dentro del rango admitido.</span>
 
          <label><b>ID del Cliente</b></label>
           <select class="formSelect" ng-model="ped.idCliente"  required>
               <option ng-repeat="cl in ListaUsuarios" ng-if="cl.cargo == 'Cliente'" value="{{cl.idUsu}}">{{cl.idUsu}}  {{cl.nombre}}</option>  
           </select>
 
-          <label><b>Monto Total $</b></label>
+          <label><b>Monto Total $</b> <b ng-show="oferta != -1">({{oferta}}% de descuento)</b></label>
          <input class="loginText" ng-model="ped.monto" type="number" placeholder='0' name="pedMonto" readonly required>
-
-          <!-- <label><b>Password</b></label>
-          <input class="loginPassword" type="password" placeholder="Ingrese Password" name="psw" required>
-
-          <label><b>Repetir Password</b></label>
-          <input class="loginPassword" type="password" placeholder="Repita Password" name="psw" required> -->
             
-          <button class="loginButton" ng-click="Guardar()">Registrar</button>
+          <button class="loginButton" ng-disabled="FormIngreso.$invalid" ng-click="Guardar()">Registrar</button>
       
           <!-- <input type="checkbox" checked="checked"> Remember me -->
         

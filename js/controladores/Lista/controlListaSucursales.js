@@ -15,6 +15,8 @@ angular.module('app.controllers')
         foto3 : "placeholder1.png"
     };
 
+    $scope.SucursalParaModificar = {};
+
     $scope.EncargadoParaMostrar = {
         nombre : "NOMBRE",
         email: "MAIL"
@@ -44,6 +46,26 @@ angular.module('app.controllers')
             })
 
     };
+
+    $scope.ModificarSucursal = function(sucModif){
+        $scope.SucursalParaModificar = sucModif;
+        document.getElementById('id03').style.display='block';
+    };
+
+    $scope.RealizarModificacion = function(){
+        var jsonModif = JSON.stringify($scope.SucursalParaModificar);
+        SrvSucursales.modificarSucursal(jsonModif)
+            .then(function (respuesta){
+                $timeout(function(){
+                    console.info(respuesta);
+                    document.getElementById('id03').style.display='none';
+                },100);
+            }).catch(function (error){
+
+                console.info("Error", error);
+
+            })
+    }
 
     SrvSucursales.traerTodas()
     	.then(function (respuesta){

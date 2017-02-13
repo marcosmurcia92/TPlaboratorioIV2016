@@ -1,6 +1,6 @@
 angular.module('app.controllers')
 
-.controller('altaPedidosCtrl', function($scope, $state, $timeout, $interval, UsuarioActual, SrvPedidos, SrvProductos, SrvSucursales, SrvUsuarios){
+.controller('altaPedidosCtrl', function($scope, $state, $timeout, $interval, UsuarioActual, SrvPedidos, SrvProductos, SrvSucursales, SrvUsuarios, SrvOfertas){
 
 	$scope.usuario = JSON.parse(UsuarioActual.getFullData());
 
@@ -10,9 +10,45 @@ angular.module('app.controllers')
 	$scope.ped.idCliente = -1;
 	$scope.ped.estado = "Pendiente";
 
+	$scope.oferta = -1;
+
+	var dtToday = new Date();
+	var dtMin = dtToday;
+	dtMin.setDate(dtMin.getDate() + 2);
+
+	var month = dtMin.getMonth() + 1;
+    var day = dtMin.getDate();
+    var year = dtMin.getFullYear();
+    if(month < 10)
+        month = '0' + month.toString();
+    if(day < 10)
+        day = '0' + day.toString();
+
+	$scope.minDate = day + '/' + month + '/' + year;
+	var dtMax = dtToday;
+	dtMax.setDate(dtMax.getDate() + 5);
+
+	month = dtMax.getMonth() + 1;
+    day = dtMax.getDate();
+    year = dtMax.getFullYear();
+    if(month < 10)
+        month = '0' + month.toString();
+    if(day < 10)
+        day = '0' + day.toString();
+
+	$scope.maxDate = day + '/' + month + '/' + year;
+
 	$scope.ListaProductos = [];
 	$scope.ListaSucursales = [];
+	$scope.ListaOfertas = [];
 	$scope.ListaUsuarios = [];
+
+	$scope.ChequearFechas = function(){
+		var checkMin = $scope.ped.fechaPedido < $scope.minDate;
+		var checkMax = $scope.ped.fechaPedido > $scope.maxDate;
+
+		return (checkMin || checkMax);
+	}
 
 	SrvProductos.traerTodos()
     	.then(function (respuesta){
@@ -49,12 +85,32 @@ angular.module('app.controllers')
 
     	});
 
+    SrvOfertas.traerTodas()
+    	.then(function (respuesta){
+
+    		console.info("todas las ofertas", respuesta);
+        $scope.ListaOfertas = respuesta.data;
+
+    	}).catch(function (error){
+
+    		$scope.ListaOfertas = [];
+
+    	})
+
 
     $scope.updateMonto = $interval(function(){
     	if($scope.ped.idProd != -1){
     		var idxProd = $scope.BuscarIdxProducto($scope.ped.idProd);
     		if(idxProd != -1){
-    			$scope.ped.monto = $scope.ListaProductos[idxProd].precio * $scope.ped.cantPedida;
+    			var idxSuc = $scope.BuscarIdxSucursal($scope.ped.idSuc);
+    			if(idxSuc != -1){
+    				$scope.oferta = $scope.BuscarOferta($scope.ped.idProd,$scope.ped.idSuc);
+    				if($scope.oferta != -1){
+    					$scope.ped.monto = $scope.ListaProductos[idxProd].precio * $scope.ped.cantPedida * ($scope.oferta / 100);
+    				}else{
+    					$scope.ped.monto = $scope.ListaProductos[idxProd].precio * $scope.ped.cantPedida;
+    				}
+    			}
     		}
     	}
     },100);
@@ -68,6 +124,26 @@ angular.module('app.controllers')
 
     	return -1;
     };
+
+    $scope.BuscarIdxSucursal = function(id){
+    	for (var i = $scope.ListaSucursales.length - 1; i >= 0; i--) {
+    		if($scope.ListaSucursales[i].idSuc == id){
+    			return i;
+    		}
+    	};
+
+    	return -1;
+    };
+
+    $scope.BuscarOferta = function(idP,idS){
+    	for (var i = $scope.ListaOfertas.length - 1; i >= 0; i--) {
+    		if($scope.ListaOfertas[i].idProd == idP && $scope.ListaOfertas[i].idSuc == idS){
+    			return $scope.ListaOfertas[i].descuento;
+    		}
+    	};
+
+    	return -1;
+    }
     
 
 	$scope.Guardar = function(){

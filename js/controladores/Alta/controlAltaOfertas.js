@@ -4,7 +4,7 @@ angular.module('app.controllers')
 
 	$scope.usuario = JSON.parse(UsuarioActual.getFullData());
 
-	$scope.oferta = {};
+	$scope.ofer = {};
 
 	$scope.ListaProductos = [];
 	$scope.ListaSucursales = [];
@@ -35,9 +35,9 @@ angular.module('app.controllers')
 
 	$scope.Guardar = function(){
 
-		var oferta = JSON.stringify($scope.oferta);
+		var oferta = JSON.stringify($scope.ofer);
 
-		console.info("oferta", $scope.oferta);
+		console.info("oferta", $scope.ofer);
 
 		SrvOfertas.insertarOferta(oferta)
 			.then(function (respuesta){

@@ -136,7 +136,7 @@ angular.module('app.controllers')
                     .then(function (respuesta){
                         $timeout(function(){
                             console.info(respuesta);
-                            document.getElementById('id04').style.display='noce';
+                            document.getElementById('id04').style.display='none';
                         },100);
                     }).catch(function (error){
 

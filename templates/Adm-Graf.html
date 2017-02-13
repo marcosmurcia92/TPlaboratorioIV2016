@@ -1,9 +1,24 @@
 <!-- Sidebar -->
-
+	<div class="graphContainer">
         <!-- Page Content -->
-        <div class="formContainer">
-            <h1>Bienvenido a Pizzerias Argenta S.R.L.</h1>
-            <h2 ng-show="!userActual.login">Ingresa en el sistema o registrate para poder ver el contenido de nuestra página.</h2>
-            <h2 ng-show="userActual.login">Ya estas logueado! Utiliza el menú lateral para navegar por la web.</h2>
-        </div>
+        <h3>Ventas por Producto</h3>
+        <canvas id="pieVentasProd" class="chart chart-pie"
+		  chart-data="dataVProd" chart-labels="nombresProds">
+		</canvas> 
+		<br><br>
+		<h3>Ventas por Sucursal</h3>
+		<canvas id="barVentasSuc" class="chart chart-bar"
+		  chart-data="dataVSuc" chart-labels="nombresSuc">
+		</canvas>
+		<br><br>
+		<h3>Pedidos por fecha</h3>
+		<canvas id="linePedFecha" class="chart chart-line" 
+		chart-data="dataCantPedidos" chart-labels="fechasPedidos">
+		</canvas>
+		<br><br>
+		<h3>Estadísticas de Encuestas</h3>
+		<canvas id="baseEncuestas" class="chart-horizontal-bar"
+		  chart-data="dataValorEnc" chart-labels="nombresEncCat" chart-series="encSeries" chart-options="encOptions">
+		</canvas> 
+	</div>
         <!-- /#page-content-wrapper -->

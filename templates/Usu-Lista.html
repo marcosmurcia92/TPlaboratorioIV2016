@@ -9,7 +9,8 @@
 				    <th>NOMBRE</th>
 				    <th>EMAIL</th>
 					<th>CARGO</th>
-				   
+				   	<th>ESTADO</th>
+				   	<th>SUCURSAL</th>
 				</tr>
 				
 				<tr ng-repeat="usu in ListaUsuarios">
@@ -17,7 +18,31 @@
 					<td>{{usu.nombre}}</td>
 					<td>{{usu.email}}</td>
 					<td>{{usu.cargo}}</td>
+					<td>
+						<p ng-show="(userActual.cargo != 'Encargado' && usu.habilitado == 0)">DESHABILITADO</p>
+						<p ng-show="(userActual.cargo != 'Encargado' && usu.habilitado == 1)">HABILITADO</p>
+
+						<button class="btn btn-disabled" ng-show="(userActual.cargo == 'Encargado' && usu.habilitado == 0)" ng-click="ToggleUser(usu)">DESHABILITADO</button>
+						<button class="btn btn-info" ng-show="(userActual.cargo == 'Encargado' && usu.habilitado == 1)" ng-disabled="usu.idUsu == userActual.id" ng-click="ToggleUser(usu)">HABILITADO</button>
+					</td>
+					<td>
+						 <p ng-show="usu.idSuc == 0">TODAS</p>
+						 <button class="btn btn-info" ng-show="usu.idSuc != 0" ng-click="MostrarSucursal(usu.idSuc)" >VER SUCURSAL ({{usu.idSuc}})</button>
+					</td>
 				</tr>
 			</table>
+
+			<div id="id01" style="display:none;" class="modal">
+			  
+			  <form class="modal-content animate" >
+
+			    <!-- <div class="container"> -->
+			      <modal-sucursal sucursalporparametro='SucursalParaMostrar'></modal-sucursal>
+
+			      <button class="btn btn-danger" onclick="document.getElementById('id01').style.display='none'">CERRAR MODAL</button> 
+			    <!-- </div> -->
+
+			  </form>
+			</div>
         </div>
         <!-- /#page-content-wrapper -->

@@ -7,6 +7,7 @@ class Sucursal
 	public $idSuc;
 	public $nombre;
 	public $direccion;
+	public $localidad;
 	public $lat;
 	public $lng;
 	public $telefono;
@@ -31,6 +32,10 @@ class Sucursal
 	public function GetDireccion()
 	{
 		return $this->direccion;
+	}
+	public function GetLocalidad()
+	{
+		return $this->localidad;
 	}
 	public function GetLat()
 	{
@@ -79,6 +84,10 @@ class Sucursal
 	{
 		$this->direccion = $valor;
 	}
+	public function SetLocalidad($valor)
+	{
+		$this->localidad = $valor;
+	}
 	public function SetLat($valor)
 	{
 		$this->lat = $valor;
@@ -121,6 +130,7 @@ class Sucursal
 			
 			$this->nombre = $obj->nombre;
 			$this->direccion = $obj->direccion;
+			$this->localidad = $obj->localidad;
 			$this->lat = $obj->lat;
 			$this->lng = $obj->lng;
 			$this->telefono = $obj->telefono;
@@ -136,7 +146,7 @@ class Sucursal
 //--TOSTRING	
   	public function ToString()
 	{
-	  	return $this->nombre."-".$this->direccion."-".$this->lat."-".$this->lng."-".$this->telefono."-".$this->encargado."-".$this->foto1."-".$this->foto2."-".$this->foto3;
+	  	return $this->nombre."-".$this->direccion."-".$this->localidad."-".$this->lat."-".$this->lng."-".$this->telefono."-".$this->encargado."-".$this->foto1."-".$this->foto2."-".$this->foto3;
 	}
 //--------------------------------------------------------------------------------//
 
@@ -184,6 +194,7 @@ class Sucursal
 				UPDATE sucursales 
 				SET nombre=:nombre,
 				direccion=:direccion,
+				localidad=:localidad,
 				lat=:lat,
 				lng=:lng,
 				telefono=:telefono,
@@ -196,6 +207,7 @@ class Sucursal
 			$consulta->bindValue(':idSuc',$sucursal->idSuc, PDO::PARAM_INT);
 			$consulta->bindValue(':nombre', $sucursal->nombre, PDO::PARAM_STR);
 			$consulta->bindValue(':direccion', $sucursal->direccion, PDO::PARAM_STR);
+			$consulta->bindValue(':localidad', $sucursal->localidad, PDO::PARAM_STR);
 			$consulta->bindValue(':lat', $sucursal->lat, PDO::PARAM_STR);
 			$consulta->bindValue(':lng', $sucursal->lng, PDO::PARAM_STR);
 			$consulta->bindValue(':telefono', $sucursal->telefono, PDO::PARAM_STR);
@@ -213,10 +225,11 @@ class Sucursal
 	public static function InsertarSucursal($sucursal)
 	{
 		$objetoAccesoDato = AccesoDatos::dameUnObjetoAcceso(); 
-		$consulta =$objetoAccesoDato->RetornarConsulta("INSERT into sucursales (nombre,direccion,lat,lng,telefono,encargado,foto1,foto2,foto3) values(:nombre,:direccion,:lat,:lng,:telefono,:encargado,:foto1,:foto2,:foto3)");
+		$consulta =$objetoAccesoDato->RetornarConsulta("INSERT into sucursales (nombre,direccion,localidad,lat,lng,telefono,encargado,foto1,foto2,foto3) values(:nombre,:direccion,:localidad,:lat,:lng,:telefono,:encargado,:foto1,:foto2,:foto3)");
 		//$consulta =$objetoAccesoDato->RetornarConsulta("CALL Insertarsucursal (:nombre,:nombre,:dni,:foto1,:foto1,:foto1,:codFoto1");
 		$consulta->bindValue(':nombre', $sucursal->nombre, PDO::PARAM_STR);
 		$consulta->bindValue(':direccion', $sucursal->direccion, PDO::PARAM_STR);
+		$consulta->bindValue(':localidad', $sucursal->localidad, PDO::PARAM_STR);
 		$consulta->bindValue(':lat', $sucursal->lat, PDO::PARAM_STR);
 		$consulta->bindValue(':lng', $sucursal->lng, PDO::PARAM_STR);
 		$consulta->bindValue(':telefono', $sucursal->telefono, PDO::PARAM_STR);
