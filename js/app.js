@@ -32,6 +32,12 @@ angular.module('app', ['app.controllers', 'ngMap', 'ngAnimate', 'ngTouch', 'ngFa
 
 	};
 
+	Chart.scaleService.updateScaleDefaults('linear', {
+	    ticks: {
+	        min: 0
+	    }
+	})
+
 })
 
 
