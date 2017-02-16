@@ -1,9 +1,147 @@
 <!-- Sidebar -->
 
         <!-- Page Content -->
-        <div class="formContainer">
-            <h1>Bienvenido a Pizzerias Argenta S.R.L.</h1>
-            <h2 ng-show="!userActual.login">Ingresa en el sistema o registrate para poder ver el contenido de nuestra página.</h2>
-            <h2 ng-show="userActual.login">Ya estas logueado! Utiliza el menú lateral para navegar por la web.</h2>
-        </div>
+        <div  id="exportthis">
+        	<h4>USUARIOS</h4>
+	        <table class="table table-hover" id="exportusuarios">
+					<tr>
+						<th>ID</th>
+					    <th>NOMBRE</th>
+					    <th>EMAIL</th>
+						<th>CARGO</th>
+					   	<th>ESTADO</th>
+					   	<th>SUCURSAL</th>
+					</tr>
+					
+					<tr ng-repeat="usu in ListaUsuarios">
+						<td>{{usu.idUsu}}</td>
+						<td>{{usu.nombre}}</td>
+						<td>{{usu.email}}</td>
+						<td>{{usu.cargo}}</td>
+						<td>
+							{{usu.habilitado}}
+						</td>
+						<td>
+							{{usu.idSuc}}
+						</td>
+					</tr>
+			</table>
+			<br>
+        	<h4>SUCURSALES</h4>
+			<table class="table table-hover" id="exportsucursales">
+				<tr>
+					<th>ID</th>
+					<th>NOMBRE</th>
+				    <th>DIRECCIÓN</th>
+				    <th>LOCALIDAD</th>
+				    <th>LATITUD</th>
+				    <th>LONGITUD</th>
+				    <th>TELÉFONO</th>
+				    <th>ENCARGADO</th>
+				    <th>FOTO 1</th>
+				    <th>FOTO 2</th>
+				    <th>FOTO 3</th>
+				</tr>
+
+				<tr ng-repeat="suc in ListaSucursales">
+					<td>{{suc.idSuc}}</td>
+					<td>{{suc.nombre}}</td>
+					<td>{{suc.direccion}}</td>
+					<td>{{suc.localidad}}</td>
+					<td>{{suc.lat}}</td>
+					<td>{{suc.lng}}</td>
+					<td>{{suc.telefono}}</td>
+					<td>
+						{{suc.encargado}}
+					</td>
+					<td>{{suc.foto1}}</td>
+					<td>{{suc.foto2}}</td>
+					<td>{{suc.foto3}}</td>
+				</tr>
+			</table>
+			<br>
+	        <h4>PRODUCTOS</h4>
+	        <table class="table table-hover" id="exportproductos">
+					<tr>
+						<th>ID</th>
+					    <th>NOMBRE</th>
+					    <th>PRECIO</th>
+					    <th>FOTO 1</th>
+					    <th>FOTO 2</th>
+					    <th>FOTO 3</th>
+					</tr>
+					<tr ng-repeat="prod in ListaProductos">
+						<td>{{prod.idProd}}</td>
+						<td>{{prod.nombre}}</td>
+						<td>${{prod.precio}}</td>
+					    <td>{{prod.foto1}}</td>
+					    <td>{{prod.foto2}}</td>
+					    <td>{{prod.foto3}}</td>
+					</tr>
+			</table>
+			<br>
+			<h4>PEDIDOS</h4>
+	        <table class="table table-hover table-responsive" id="exportpedidos" width="100%" border="0" cellspacing="0" cellpadding="0">
+					<tr>
+						<th>ID</th>
+					    <th>PRODUCTO</th>
+					    <th>SUCURSAL</th>
+					    <th>CLIENTE</th>
+					    <th>CANTIDAD PEDIDA</th>
+					    <th>FECHA DE PEDIDO</th>
+					    <th>MONTO TOTAL</th>
+					    <th>ESTADO</th>
+					</tr>
+					<tr ng-repeat="ped in ListaPedidos">
+						<td>{{ped.idPed}}</td>
+						<td>{{ped.idProd}}</td>
+						<td>{{ped.idSuc}}</td>
+						<td>{{ped.idCliente}}</td>
+						<td>{{ped.cantPedida}}</td>
+						<td>{{ped.fechaPedido | date : "dd'/'MM'/'yyyy"}}</td>
+						<td>${{ped.monto}}</td>
+						<td>{{ped.estado}}</td>
+					</tr>
+			</table>
+			<br>
+			<h4>OFERTAS</h4>
+	        <table class="table table-hover" id="exportofertas" ng-table="tableParams" export-csv="ofertasCsv">
+					<tr>
+						<th>ID</th>
+					    <th>PRODUCTO</th>
+					    <th>SUCURSAL</th>
+					    <th>FECHA DE FIN</th>
+					    <th>DESCUENTO</th>
+					</tr>
+					<tr ng-repeat="ofer in ListaOfertas">
+						<td>{{ofer.idOfer}}</td>
+						<td>{{ofer.idProd}}</td>
+						<td>{{ofer.idSuc}}</td>
+						<td>{{ofer.fechaFin}}</td>
+						<td>{{ofer.descuento}}%</td>
+					</tr>
+			</table>
+			<br>
+			<h4>ENCUESTAS</h4>
+	        <table class="table table-hover" id="exportencuestas" ng-table="tableParams" export-csv="encuestasCsv">
+					<tr>
+						<th>ID</th>
+					    <th>PEDIDO</th>
+					    <th>CLIENTE</th>
+					    <th>VALOR PRODUCTO</th>
+					    <th>VALOR ATENCION</th>
+					    <th>VALOR DEMORA</th>
+					    <th>COMENTARIO</th>
+					</tr>
+					<tr ng-repeat="enc in ListaEncuestas">
+						<td>{{enc.idEnc}}</td>
+						<td>{{enc.idPed}}</td>
+						<td>{{enc.idCliente}}</td>
+						<td>{{enc.valorProducto}}</td>
+						<td>{{enc.valorAtencion}}</td>
+						<td>{{enc.valorDemora}}</td>
+						<td>{{enc.comentario}}</td>
+					</tr>
+			</table>
+		</div>
         <!-- /#page-content-wrapper -->

@@ -1,4 +1,4 @@
-angular.module('app', ['app.controllers', 'ngMap', 'ngAnimate', 'ngTouch', 'ngFader', 'ui.bootstrap', 'ui.router', 'ui.grid', 'ui.grid.pagination', 'ui.grid.resizeColumns', 'ui.grid.selection', 'ui.grid.exporter', 'ui.grid.edit', 'angularFileUpload', 'satellizer','chart.js'])
+angular.module('app', ['app.controllers', 'ngMap', 'ngTableExport', 'ngAnimate', 'ngTouch', 'ngFader', 'ui.bootstrap', 'ui.router', 'ui.grid', 'ui.grid.pagination', 'ui.grid.resizeColumns', 'ui.grid.selection', 'ui.grid.exporter', 'ui.grid.edit', 'angularFileUpload', 'satellizer','chart.js'])
 
 .run(function($rootScope,$auth,UsuarioActual,$state){
 
