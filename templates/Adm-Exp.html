@@ -1,9 +1,33 @@
 <!-- Sidebar -->
+		
+			<button class="btn btn-danger" ng-click="ExportarPDF()">Exportar PDF</button>   
+			<!-- <button class="btn btn-success" ng-click="ExportarCSV('Todo')">Exportar CSV (Todo)</button> --><br><br>
+			<div class="btn-group" data-toggle="buttons">
+			    <label class="btn btn-primary" ng-click="tableFlags.usuariosON = !tableFlags.usuariosON;">
+			        <input type="checkbox" ng-model="tableFlags.usuariosON"> <span class="glyphicon glyphicon-pawn" aria-hidden="true"></span>
+			    </label>
+			    <label class="btn btn-primary" ng-click="tableFlags.sucursalesON = !tableFlags.sucursalesON;">
+			        <input type="checkbox" ng-model="tableFlags.sucursalesON"> <span class="glyphicon glyphicon-map-marker" aria-hidden="true"></span>
+			    </label>
+			    <label class="btn btn-primary" ng-click="tableFlags.productosON = !tableFlags.productosON;">
+			        <input type="checkbox" ng-model="tableFlags.productosON"> <span class="glyphicon glyphicon-cutlery" aria-hidden="true"></span>
+			    </label>
+			    <label class="btn btn-primary" ng-click="tableFlags.pedidosON = !tableFlags.pedidosON;">
+			        <input type="checkbox" ng-model="tableFlags.pedidosON"> <span class="glyphicon glyphicon-send" aria-hidden="true"></span>
+			    </label>
+			    <label class="btn btn-primary" ng-click="tableFlags.ofertasON = !tableFlags.ofertasON;">
+			        <input type="checkbox" ng-model="tableFlags.ofertasON"> <span class="glyphicon glyphicon-fire" aria-hidden="true"></span>
+			    </label>
+			    <label class="btn btn-primary" ng-click="tableFlags.encuestasON = !tableFlags.encuestasON;">
+			        <input type="checkbox" ng-model="tableFlags.encuestasON"> <span class="glyphicon glyphicon-check" aria-hidden="true"></span>
+			    </label>
+			</div>
 
         <!-- Page Content -->
         <div  id="exportthis">
-        	<h4>USUARIOS</h4>
-	        <table class="table table-hover" id="exportusuarios">
+        	<h4 ng-show="tableFlags.usuariosON">USUARIOS</h4>
+        	<button class="btn btn-danger" ng-show="tableFlags.usuariosON" ng-click="ExportarCSV($event,'usu','reporte_usuarios.csv')">EXPORTAR CSV</button>
+	        <table class="table table-hover" ng-show="tableFlags.usuariosON" id="exportusuarios" export-csv="usuariosCsv">
 					<tr>
 						<th>ID</th>
 					    <th>NOMBRE</th>
@@ -26,9 +50,10 @@
 						</td>
 					</tr>
 			</table>
-			<br>
-        	<h4>SUCURSALES</h4>
-			<table class="table table-hover" id="exportsucursales">
+			<br ng-show="tableFlags.usuariosON">
+        	<h4 ng-show="tableFlags.sucursalesON">SUCURSALES</h4>
+        	<button class="btn btn-danger" ng-show="tableFlags.sucursalesON" ng-click="ExportarCSV($event,'suc','reporte_sucursales.csv')">EXPORTAR CSV</button>
+			<table class="table table-hover" ng-show="tableFlags.sucursalesON" id="exportsucursales" export-csv="sucursalesCsv">
 				<tr>
 					<th>ID</th>
 					<th>NOMBRE</th>
@@ -59,9 +84,10 @@
 					<td>{{suc.foto3}}</td>
 				</tr>
 			</table>
-			<br>
-	        <h4>PRODUCTOS</h4>
-	        <table class="table table-hover" id="exportproductos">
+			<br ng-show="tableFlags.sucursalesON">
+	        <h4 ng-show="tableFlags.productosON">PRODUCTOS</h4>
+        	<button class="btn btn-danger" ng-show="tableFlags.productosON" ng-click="ExportarCSV($event,'prod','reporte_productos.csv')">EXPORTAR CSV</button>
+	        <table class="table table-hover" ng-show="tableFlags.productosON" id="exportproductos" export-csv="productosCsv">
 					<tr>
 						<th>ID</th>
 					    <th>NOMBRE</th>
@@ -79,9 +105,10 @@
 					    <td>{{prod.foto3}}</td>
 					</tr>
 			</table>
-			<br>
-			<h4>PEDIDOS</h4>
-	        <table class="table table-hover table-responsive" id="exportpedidos" width="100%" border="0" cellspacing="0" cellpadding="0">
+			<br ng-show="tableFlags.productosON">
+			<h4 ng-show="tableFlags.pedidosON">PEDIDOS</h4>
+        	<button class="btn btn-danger" ng-show="tableFlags.pedidosON" ng-click="ExportarCSV($event,'ped','reporte_pedidos.csv')">EXPORTAR CSV</button>
+	        <table class="table table-hover table-responsive" ng-show="tableFlags.pedidosON" id="exportpedidos" width="100%" border="0" cellspacing="0" cellpadding="0" export-csv="pedidosCsv">
 					<tr>
 						<th>ID</th>
 					    <th>PRODUCTO</th>
@@ -103,9 +130,10 @@
 						<td>{{ped.estado}}</td>
 					</tr>
 			</table>
-			<br>
-			<h4>OFERTAS</h4>
-	        <table class="table table-hover" id="exportofertas" ng-table="tableParams" export-csv="ofertasCsv">
+			<br ng-show="tableFlags.pedidosON">
+			<h4 ng-show="tableFlags.ofertasON">OFERTAS</h4>
+        	<button class="btn btn-danger" ng-show="tableFlags.ofertasON" ng-click="ExportarCSV($event,'ofer','reporte_ofertas.csv')">EXPORTAR CSV</button>
+	        <table class="table table-hover" ng-show="tableFlags.ofertasON" id="exportofertas" ng-table="tableParams" export-csv="ofertasCsv">
 					<tr>
 						<th>ID</th>
 					    <th>PRODUCTO</th>
@@ -121,9 +149,10 @@
 						<td>{{ofer.descuento}}%</td>
 					</tr>
 			</table>
-			<br>
-			<h4>ENCUESTAS</h4>
-	        <table class="table table-hover" id="exportencuestas" ng-table="tableParams" export-csv="encuestasCsv">
+			<br ng-show="tableFlags.ofertasON">
+			<h4 ng-show="tableFlags.encuestasON">ENCUESTAS</h4>
+        	<button class="btn btn-danger" ng-show="tableFlags.encuestasON" ng-click="ExportarCSV($event,'enc','reporte_encuestas.csv')">EXPORTAR CSV</button>
+	        <table class="table table-hover" ng-show="tableFlags.encuestasON" id="exportencuestas" ng-table="tableParams" export-csv="encuestasCsv">
 					<tr>
 						<th>ID</th>
 					    <th>PEDIDO</th>

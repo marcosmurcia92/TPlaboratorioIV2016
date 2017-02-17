@@ -2,7 +2,6 @@
 
         <!-- Page Content -->
         <h3>LISTA DE OFERTAS</h3>
-        <button class="btn btn-success" ng-click="ExportarPDF()">EXPORTAR EN PDF</button>
         <button class="btn btn-danger" ng-click="ExportarCSV($event,'reporte_ofertas.csv')">EXPORTAR EN CSV</button>
         <table class="table table-hover" id="exportthis" ng-table="tableParams" export-csv="ofertasCsv">
 				<tr>
