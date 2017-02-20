@@ -200,8 +200,8 @@ class Sucursal
 				telefono=:telefono,
 				encargado=:encargado,
 				foto1=:foto1,
-				foto1=:foto2,
-				foto1=:foto3
+				foto2=:foto2,
+				foto3=:foto3
 				WHERE idSuc=:idSuc");
 			//$consulta =$objetoAccesoDato->RetornarConsulta("CALL Modificarsucursal(:id,:nombre,:nombre,:foto1,:foto1,:foto1)");
 			$consulta->bindValue(':idSuc',$sucursal->idSuc, PDO::PARAM_INT);

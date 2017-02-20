@@ -145,8 +145,8 @@ class Producto
 				SET nombre=:nombre,
 				precio=:precio,
 				foto1=:foto1,
-				foto1=:foto2,
-				foto1=:foto3
+				foto2=:foto2,
+				foto3=:foto3
 				WHERE idProd=:idProd");
 			//$consulta =$objetoAccesoDato->RetornarConsulta("CALL ModificarProducto(:id,:nombre,:nombre,:foto1,:foto1,:foto1)");
 			$consulta->bindValue(':idProd',$producto->idProd, PDO::PARAM_INT);
