@@ -29,6 +29,8 @@ angular.module('app.controllers')
 
     $scope.PedidoSeleccionado = {};
 
+    $scope.PedidoParaModificar = {};
+
     $scope.EncuestaRegistrada = {};
 
     $scope.MostrarProducto = function(idProducto){
@@ -150,15 +152,50 @@ angular.module('app.controllers')
 
     };
 
-    $scope.ModificarPedido = function(pedido){
+    $scope.ModificarPedido = function(pedidoModif){
+        $scope.PedidoParaModificar = pedidoModif;
+        $scope.PedidoParaModificar.fechaPedido = new Date(pedidoModif.fechaPedido);
+        document.getElementById('id05').style.display='block';
+    };
 
+    $scope.RealizarModificacion = function(){
+        var jsonModif = JSON.stringify($scope.PedidoParaModificar);
+        SrvPedidos.modificarPedido(jsonModif)
+            .then(function (respuesta){
+                $timeout(function(){
+                    console.info(respuesta);
+                    document.getElementById('id05').style.display='none';
+                },100);
+            }).catch(function (error){
+
+                console.info("Error", error);
+
+            })
+    }
+
+    $scope.CancelarModificacion = function(){
+        $scope.ListaPedidos = [];
+        SrvPedidos.traerTodos()
+        .then(function (respuesta){
+
+            console.info("todos los Pedidos", respuesta);
+            $scope.ListaPedidos = respuesta.data;
+
+        }).catch(function (error){
+
+            $scope.ListaPedidos = [];
+
+        })
     };
 
     SrvPedidos.traerTodos()
     	.then(function (respuesta){
 
     		console.info("todos los pedidos", respuesta);
-        $scope.ListaPedidos = respuesta.data;
+            $scope.ListaPedidos = respuesta.data;
+            for (var i = $scope.ListaPedidos.length - 1; i >= 0; i--) {
+                $scope.ListaPedidos[i].fechaPedido = new Date(respuesta.data[i].fechaPedido);
+            };
 
     	}).catch(function (error){
 

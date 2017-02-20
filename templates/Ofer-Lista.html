@@ -2,7 +2,6 @@
 
         <!-- Page Content -->
         <h3>LISTA DE OFERTAS</h3>
-        <button class="btn btn-danger" ng-click="ExportarCSV($event,'reporte_ofertas.csv')">EXPORTAR EN CSV</button>
         <table class="table table-hover" id="exportthis" ng-table="tableParams" export-csv="ofertasCsv">
 				<tr>
 					<th>ID</th>
@@ -10,15 +9,18 @@
 				    <th>SUCURSAL</th>
 				    <th>FECHA DE FIN</th>
 				    <th>DESCUENTO</th>
-			
+					<th ng-show="userActual.cargo=='Encargado'">ACCIÓN</th>
 				   
 				</tr>
 				<tr ng-repeat="ofer in ListaOfertas">
 					<td>{{ofer.idOfer}}</td>
 					<td><button class="btn btn-info" ng-click="MostrarProducto(ofer.idProd)">VER PRODUCTO</button></td>
 					<td><button class="btn btn-info" ng-click="MostrarSucursal(ofer.idSuc)">VER SUCURSAL</button></td>
-					<td>{{ofer.fechaFin}}</td>
+					<td>{{ofer.fechaFin | date : "dd'/'MM'/'yyyy"}}</td>
 					<td>{{ofer.descuento}}%</td>
+					<td ng-show="userActual.cargo=='Encargado'">
+						<button class="btn btn-success" ng-click="ModificarOferta(ofer)">MODIFICAR</button>
+					</td>
 				</tr>
 		</table>
 
@@ -47,5 +49,16 @@
 
 		  </form>
 		  
+		</div>
+
+		<div id="id03" style="display:none;" class="modal">
+			  
+			  <form class="modal-content animate" >
+
+			    <!-- <div class="container"> -->
+			      <modal-modif-oferta ofertaporparametro='OfertaParaModificar' modifparent='RealizarModificacion()' cancelmodif="CancelarModificacion()"></modal-modif-oferta>
+			    <!-- </div> -->
+
+			  </form>
 		</div>
         <!-- /#page-content-wrapper -->

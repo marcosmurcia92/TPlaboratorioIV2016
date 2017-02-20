@@ -4,6 +4,8 @@ angular
 
 		this.insertarOferta = InsertarOferta;
 
+		this.modificarOferta = ModificarOferta;
+
 		this.traerTodas = TraerTodas;
 
 		this.borrarOferta = BorrarOferta;
@@ -15,8 +17,25 @@ angular
 		function InsertarOferta(oferta){
 
 			console.log(oferta);
-			//return $http.post('http://baratinga.hol.es/ws1/oferta/' + oferta)
 			return $http.post(url + oferta)
+				.then(function (respuesta){
+
+					console.log(respuesta);
+
+					return respuesta;
+
+				}).catch(function (error){
+
+					console.log(error);
+
+				})
+
+		};
+
+		function ModificarOferta(oferta){
+
+			console.log(oferta);
+			return $http.put(url + oferta)
 				.then(function (respuesta){
 
 					console.log(respuesta);

@@ -1,0 +1,37 @@
+<div style="width:100%;" align=center>
+
+	<form class="formContainer" >
+            
+          <label><b>Nombre de Producto</b></label>
+          <input class="loginText" ng-model="miProducto.nombre" type="text" placeholder="Ingrese nombre de producto" name="prodNom" required>
+
+          <label><b>Precio $</b></label>
+          <input class="loginText" ng-model="miProducto.precio" type="number" placeholder="Ingrese precio" name="prodPrecio" required>
+
+          <button class="btn btn-info" ng-show="willModifyPhotos == 1" ng-click="TogglePhotoUpload()"><span class="glyphicon glyphicon-ok" aria-hidden="true"></span></button>
+          <button class="btn btn-disabled" ng-show="willModifyPhotos == 0" ng-click="TogglePhotoUpload()"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></button> 
+          <label><b> Modificar fotos de la sucursal</b></label><br><br>
+
+          <label ng-show="willModifyPhotos == 1"><b>Fotos de la Sucursal:</b></label>
+          <input ng-show = "willModifyPhotos == 1" class="loginText" type="file" nv-file-select uploader="SubidorDeArchivos">
+
+          <li ng-show="willModifyPhotos == 1" ng-repeat="item in SubidorDeArchivos.queue" >
+            Archivo: <span ng-bind="item.file.name"></span><br/>
+            <div ng-show="SubidorDeArchivos.isHTML5" ng-thumb="{ file: item._file, height: 100 }"></div>
+
+            <button type="button" class="btn btn-warning btn-xs" ng-click="item.cancel()" ng-disabled="!item.isUploading">
+              <span class="glyphicon glyphicon-ban-circle"></span> Cancel
+            </button>
+
+            <button type="button" class="btn btn-danger btn-xs" ng-click="item.remove()">
+              <span class="glyphicon glyphicon-trash"></span> Remove
+            </button>
+          </li>  
+            
+          <button class="loginButton" ng-click="Guardar()">Registrar</button>
+
+      </form>
+
+  <button class="btn btn-danger" ng-click="CerrarModal()">CERRAR MODAL</button> 
+
+</div>

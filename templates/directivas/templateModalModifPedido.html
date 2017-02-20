@@ -1,0 +1,37 @@
+<div style="width:100%;" align=center>
+
+	<form class="formContainer" >
+            
+          <label><b>Producto Pedido ({{miPedido.idProd}})</b></label>
+          <select class="formSelect" id="pedIdProd" ng-model="miPedido.idProd"  required>
+              <option ng-repeat="prod in ListaProductos" value="{{prod.idProd}}">{{prod.idProd}}  {{prod.nombre}}</option>  
+          </select>
+
+          <label><b>Cantidad Pedida</b></label>
+          <input class="loginText" ng-model="miPedido.cantPedida" type="number" placeholder="Ingrese cantidad" name="pedCantPedida" required>
+
+          <label><b>Sucursal de Origen</b></label>
+          <select class="formSelect" id="pedIdSuc" ng-model="miPedido.idSuc"  required>
+              <option ng-repeat="suc in ListaSucursales" value="{{suc.idSuc}}">{{suc.idSuc}}  {{suc.nombre}}</option>  
+          </select>
+
+          <label><b>Fecha del Pedido</b></label>
+          <input class="loginText" ng-model="miPedido.fechaPedido" type="date" min="{{minDate}}" max="{{maxDate}}"  name="pedFechaFin" required>
+          <span style="color:#FF0000;float:right;font-size:18;margin-left:200" ng-show='FormIngreso.pedFechaFin.$error.required'>* Ingrese una fecha</span><br>
+          <span style="color:#FF0000;float:right;font-size:18;margin-left:200" ng-show=''>* La fecha ingresada no esta dentro del rango admitido.</span>
+
+         <label><b>ID del Cliente</b></label>
+          <select class="formSelect" id="pedIdCliente" ng-model="miPedido.idCliente"  required>
+              <option ng-repeat="cl in ListaUsuarios" value="{{cl.idUsu}}">{{cl.idUsu}}  {{cl.nombre}}</option>  
+          </select>
+
+          <label><b>Monto Total $</b> <b ng-show="oferta != -1">({{oferta}}% de descuento)</b></label>
+         <input class="loginText" ng-model="miPedido.monto" type="number" placeholder='0' name="pedMonto" readonly required>
+            
+          <button class="loginButton" ng-disabled="FormIngreso.$invalid" ng-click="Guardar()">Registrar</button>
+
+      </form>
+
+  <button class="btn btn-danger" ng-click="CerrarModal()">CERRAR MODAL</button> 
+
+</div>

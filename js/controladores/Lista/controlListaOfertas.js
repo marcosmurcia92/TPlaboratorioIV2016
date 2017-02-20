@@ -6,6 +6,8 @@ angular.module('app.controllers')
 
     $scope.ListaOfertas = [];
 
+    $scope.OfertaParaModificar = {};
+
     $scope.ProductoParaMostrar = {
     	nombre : "NOMBRE",
     	precio : "123",
@@ -44,6 +46,42 @@ angular.module('app.controllers')
 
     };
 
+    $scope.ModificarOferta = function(oferModif){
+        $scope.OfertaParaModificar = oferModif;
+        $scope.OfertaParaModificar.fechaFin = new Date(oferModif.fechaFin);
+        document.getElementById('id03').style.display='block';
+    };
+
+    $scope.RealizarModificacion = function(){
+        var jsonModif = JSON.stringify($scope.OfertaParaModificar);
+        SrvOfertas.modificarOferta(jsonModif)
+            .then(function (respuesta){
+                $timeout(function(){
+                    console.info(respuesta);
+                    document.getElementById('id03').style.display='none';
+                },100);
+            }).catch(function (error){
+
+                console.info("Error", error);
+
+            })
+    }
+
+    $scope.CancelarModificacion = function(){
+        $scope.ListaOfertas = [];
+        SrvOfertas.traerTodas()
+        .then(function (respuesta){
+
+            console.info("todas las ofertas", respuesta);
+            $scope.ListaOfertas = respuesta.data;
+
+        }).catch(function (error){
+
+            $scope.ListaOfertas = [];
+
+        })
+    };
+
     $scope.MostrarSucursal = function(sucursal){
     	console.log("MI SUCURSAL ANTES", $scope.SucursalParaMostrar);
         SrvSucursales.traerUna(sucursal)
@@ -63,11 +101,6 @@ angular.module('app.controllers')
 			    };
 
 	    	})
-    };
-
-    $scope.ExportarCSV = function($event, fileName){
-        $scope.ofertasCsv.generate($event, fileName);
-        document.location.href=$scope.ofertasCsv.link();
     };
 
     SrvOfertas.traerTodas()

@@ -26,7 +26,7 @@
 					<td>
 						<button class="btn btn-info" ng-click="CerrarPedido(ped)" ng-show="(ped.estado == 'Pendiente' && (ped.idCliente == userActual.id || userActual.cargo != 'Cliente') )">CERRAR PEDIDO</button>
 						<button class="btn btn-info" ng-click="RealizarEncuesta(ped)" ng-show="(ped.estado == 'Esperando Encuesta' && userActual.cargo == 'Cliente')">REALIZAR ENCUESTA</button>
-						<button class="btn btn-info" ng-click="ModificarPedido(ped)" ng-show="(userActual.cargo != 'Cliente')">MODIFICAR</button>
+						<button class="btn btn-success" ng-click="ModificarPedido(ped)" ng-show="(userActual.cargo == 'Encargado')">MODIFICAR</button>
 					</td>
 				</tr>
 		</table>
@@ -82,5 +82,16 @@
 		    <!-- </div> -->
 
 		  </form>
+		</div>
+
+		<div id="id05" style="display:none;" class="modal">
+			  
+			  <form class="modal-content animate" >
+
+			    <!-- <div class="container"> -->
+			      <modal-modif-pedido pedidoporparametro='PedidoParaModificar' modifparent='RealizarModificacion()' cancelmodif="CancelarModificacion()"></modal-modif-pedido>
+			    <!-- </div> -->
+
+			  </form>
 		</div>
         <!-- /#page-content-wrapper -->

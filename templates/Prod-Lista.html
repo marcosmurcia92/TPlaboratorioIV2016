@@ -8,12 +8,16 @@
 				    <th>NOMBRE</th>
 				    <th>PRECIO</th>
 				    <th>FOTOS</th>
+					<th ng-show="userActual.cargo=='Encargado'">ACCIÓN</th>
 				</tr>
 				<tr ng-repeat="prod in ListaProductos">
 					<td>{{prod.idProd}}</td>
 					<td>{{prod.nombre}}</td>
 					<td>${{prod.precio}}</td>
 					<td><button class="btn btn-info" ng-click="MostrarProducto(prod)" >VER FOTOS</button></td>
+					<td ng-show="userActual.cargo=='Encargado'">
+						<button class="btn btn-success" ng-click="ModificarProducto(prod)">MODIFICAR</button>
+					</td>
 				</tr>
 		</table>
 
@@ -28,5 +32,16 @@
 		    <!-- </div> -->
 
 		  </form>
+		</div>
+
+		<div id="id02" style="display:none;" class="modal">
+			  
+			  <form class="modal-content animate" >
+
+			    <!-- <div class="container"> -->
+			      <modal-modif-producto productoporparametro='ProductoParaModificar' modifparent='RealizarModificacion()' cancelmodif="CancelarModificacion()"></modal-modif-producto>
+			    <!-- </div> -->
+
+			  </form>
 		</div>
         <!-- /#page-content-wrapper -->

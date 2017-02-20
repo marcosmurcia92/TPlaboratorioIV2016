@@ -94,73 +94,76 @@ angular.module('app.controllers')
     	.then(function (respuesta){
 
     		console.info("todas las ofertas", respuesta);
-        $scope.ListaOfertas = respuesta.data;
+            $scope.ListaOfertas = respuesta.data;
+            for (var i = $scope.ListaOfertas.length - 1; i >= 0; i--) {
+                $scope.ListaOfertas[i].fechaFin = new Date(respuesta.data[i].fechaFin);
+            };
 
+            SrvUsuarios.traerTodos()
+            .then(function (respuesta){
+
+                console.info("todos los usuarios", respuesta);
+                $scope.ListaUsuarios = respuesta.data;
+
+                SrvSucursales.traerTodas()
+                    .then(function (respuesta){
+
+                        console.info("todas las sucursales", respuesta);
+                        $scope.ListaSucursales = respuesta.data;
+
+                        SrvProductos.traerTodos()
+                            .then(function (respuesta){
+
+                                console.info("todos los productos", respuesta);
+                                $scope.ListaProductos = respuesta.data;
+
+                                SrvPedidos.traerTodos()
+                                .then(function (respuesta){
+
+                                    console.info("todos los pedidos", respuesta);
+                                    $scope.ListaPedidos = respuesta.data;
+                                    for (var i = $scope.ListaPedidos.length - 1; i >= 0; i--) {
+                                        $scope.ListaPedidos[i].fechaPedido = new Date(respuesta.data[i].fechaPedido);
+                                    };
+
+                                    SrvEncuestas.traerTodas()
+                                        .then(function (respuesta){
+
+                                            console.info("todas las encuestas", respuesta);
+                                        $scope.ListaEncuestas = respuesta.data;
+
+                                        }).catch(function (error){
+
+                                            $scope.ListaSucursales = [];
+
+                                        })
+
+                                }).catch(function (error){
+
+                                    $scope.ListaPedidos = [];
+
+                                })
+                            }).catch(function (error){
+
+                                $scope.ListaProductos = [];
+
+                            })
+
+                    }).catch(function (error){
+
+                        $scope.ListaSucursales = [];
+
+                    })
+
+            }).catch(function (error){
+
+                $scope.ListaUsuarios = [];
+
+            })
     	}).catch(function (error){
 
     		$scope.ListaOfertas = [];
 
     	})
-
-    SrvUsuarios.traerTodos()
-    	.then(function (respuesta){
-
-    		console.info("todos los usuarios", respuesta);
-
-    		
-        $scope.ListaUsuarios = respuesta.data;
-
-    	}).catch(function (error){
-
-    		$scope.ListaUsuarios = [];
-
-    	})
-
-    SrvSucursales.traerTodas()
-    	.then(function (respuesta){
-
-    		console.info("todas las sucursales", respuesta);
-        $scope.ListaSucursales = respuesta.data;
-
-    	}).catch(function (error){
-
-    		$scope.ListaSucursales = [];
-
-    	})
-
-    SrvProductos.traerTodos()
-    	.then(function (respuesta){
-
-    		console.info("todos los productos", respuesta);
-        $scope.ListaProductos = respuesta.data;
-
-    	}).catch(function (error){
-
-    		$scope.ListaProductos = [];
-
-    	})
-
-    SrvPedidos.traerTodos()
-    	.then(function (respuesta){
-
-    		console.info("todos los pedidos", respuesta);
-        $scope.ListaPedidos = respuesta.data;
-
-    	}).catch(function (error){
-
-    		$scope.ListaPedidos = [];
-
-    	})
-
-    SrvEncuestas.traerTodas()
-    	.then(function (respuesta){
-
-    		console.info("todas las encuestas", respuesta);
-        $scope.ListaEncuestas = respuesta.data;
-
-    	}).catch(function (error){
-
-    		$scope.ListaSucursales = [];
-
-    	})
+    
 })

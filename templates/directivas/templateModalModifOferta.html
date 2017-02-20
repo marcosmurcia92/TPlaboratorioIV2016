@@ -1,0 +1,27 @@
+<div style="width:100%;" align=center>
+
+	<form class="formContainer" >
+            
+          <label><b>Producto Ofertado ({{miOferta.idProd}})</b></label>
+          <select class="formSelect" id="oferIdProd" ng-model="miOferta.idProd"  required>
+              <option ng-repeat="prod in ListaProductos" value="{{prod.idProd}}">{{prod.idProd}}  {{prod.nombre}}</option>  
+          </select>
+
+          <label><b>Sucursal de Origen</b></label>
+          <select class="formSelect" id="oferIdSuc" ng-model="miOferta.idSuc"  required>
+              <option ng-repeat="suc in ListaSucursales" value="{{suc.idSuc}}">{{suc.idSuc}}  {{suc.nombre}}</option>  
+          </select>
+
+          <label><b>Fecha de Fin de Oferta</b></label>
+          <input class="loginText" ng-model="miOferta.fechaFin" type="date"  name="miOfertaFechaFin" required>
+
+          <label><b>Porcentaje de Descuento %</b></label>
+         <input class="loginText" ng-model="miOferta.descuento" type="number" min='1' max="99" placeholder='0' name="miOfertaDescuento" required>
+            
+          <button class="loginButton" ng-click="Guardar()">Registrar</button>
+
+  </form>
+
+  <button class="btn btn-danger" ng-click="CerrarModal()">CERRAR MODAL</button> 
+
+</div>

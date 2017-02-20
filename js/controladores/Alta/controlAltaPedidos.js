@@ -65,6 +65,17 @@ angular.module('app.controllers')
 
 				    		console.info("todos los usuarios", respuesta);
 				        	$scope.ListaUsuarios = respuesta.data;
+                            SrvOfertas.traerTodas()
+                            .then(function (respuesta){
+
+                                console.info("todas las ofertas", respuesta);
+                            $scope.ListaOfertas = respuesta.data;
+
+                            }).catch(function (error){
+
+                                $scope.ListaOfertas = [];
+
+                            })
 
 				    	}).catch(function (error){
 
@@ -84,18 +95,6 @@ angular.module('app.controllers')
     		$scope.ListaProductos = [];
 
     	});
-
-    SrvOfertas.traerTodas()
-    	.then(function (respuesta){
-
-    		console.info("todas las ofertas", respuesta);
-        $scope.ListaOfertas = respuesta.data;
-
-    	}).catch(function (error){
-
-    		$scope.ListaOfertas = [];
-
-    	})
 
 
     $scope.updateMonto = $interval(function(){
