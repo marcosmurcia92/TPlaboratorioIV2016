@@ -4,7 +4,7 @@ TP LaboratorioIV 2016
 <h3>Datos de Alumno</h3>
  - Alumno: Murcia Marcos Facundo
  - TP Elegido: Pizzerias Argenta SRL
- - <a href="https://marcosmurciautn.hol.es/pizzeria_arg_srl/">Página Web</a>
+ - <a href="https://marcosmurciautn.hol.es/pizzeria_arg_srl/"  target="_blank">Página Web</a>
 
 **Trabajo práctico  de los alumnos de laboratorio IV.**
 
