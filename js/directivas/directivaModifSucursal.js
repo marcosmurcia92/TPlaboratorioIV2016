@@ -51,6 +51,12 @@ angular
 					$scope.modifparent();
 				}
 			}
+
+			$scope.CerrarModal = function(){
+				//$interval.cancel($scope.refreshSelects);
+				$scope.cancelmodif();
+				document.getElementById('id03').style.display='none';
+			}
 		}
 
 		return {

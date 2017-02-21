@@ -10,6 +10,7 @@
 				    <th>LOCALIDAD</th>
 				    <th>ENCARGADO</th>
 				    <th>FICHA COMPLETA</th>
+				    <th>OFERTAS</th>
 				    <th ng-show="userActual.cargo == 'Encargado'">MODIFICAR</th>
 				</tr>
 
@@ -22,6 +23,7 @@
 						<button class="btn btn-info" ng-show="suc.encargado == 1" ng-click="MostrarEncargado(suc.idSuc)">VER ENCARGADO</button>
 					</td>
 					<td> <button class="btn btn-info" ng-click="MostrarSucursal(suc)" >VER FICHA COMPLETA</button> </td>
+					<td> <button class="btn btn-info" ng-click="MostrarOfertas(suc)" >VER OFERTAS</button> </td>
 					<td ng-show="userActual.cargo == 'Encargado'">
 						 <button class="btn btn-success" ng-click="ModificarSucursal(suc)" >MODIFICAR</button>
 					</td>
@@ -60,9 +62,20 @@
 			  <form class="modal-content animate" >
 
 			    <!-- <div class="container"> -->
-			      <modal-modif-sucursal sucursalporparametro='SucursalParaModificar' modifparent='RealizarModificacion()'></modal-modif-sucursal>
+			      <modal-modif-sucursal sucursalporparametro='SucursalParaModificar' modifparent='RealizarModificacion()' cancelmodif="CancelarModificacion()"></modal-modif-sucursal>
+			    <!-- </div> -->
 
-			      <button class="btn btn-danger" onclick="document.getElementById('id03').style.display='none'">CERRAR MODAL</button> 
+			  </form>
+			</div>
+
+			<div id="id04" style="display:none;" class="modal">
+				  
+			  <form class="modal-content animate" >
+
+			    <!-- <div class="container"> -->
+			      <modal-ofertas sucursalparaofertar='SucursalParaMostrar'></modal-ofertas>
+
+			      <button class="btn btn-danger" onclick="document.getElementById('id04').style.display='none'">CERRAR MODAL</button> 
 			    <!-- </div> -->
 
 			  </form>

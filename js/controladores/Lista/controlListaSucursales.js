@@ -23,9 +23,15 @@ angular.module('app.controllers')
     };
 
     $scope.MostrarSucursal = function(sucursal){
-    	$scope.SucursalParaMostrar = sucursal;
-    	console.log("MI SUCURSAL", $scope.SucursalParaMostrar);
-    	document.getElementById('id01').style.display='block';
+        $scope.SucursalParaMostrar = sucursal;
+        console.log("MI SUCURSAL", $scope.SucursalParaMostrar);
+        document.getElementById('id01').style.display='block';
+    };
+
+    $scope.MostrarOfertas = function(sucursal){
+        $scope.SucursalParaMostrar = sucursal;
+        //console.log("MI SUCURSAL", $scope.SucursalParaMostrar);
+        document.getElementById('id04').style.display='block';
     };
 
     $scope.MostrarEncargado = function(idSucursal){
@@ -66,6 +72,21 @@ angular.module('app.controllers')
 
             })
     }
+
+    $scope.CancelarModificacion = function(){
+        $scope.ListaSucursales = [];
+        SrvSucursales.traerTodas()
+        .then(function (respuesta){
+
+            console.info("todas las sucursales", respuesta);
+            $scope.ListaSucursales = respuesta.data;
+
+        }).catch(function (error){
+
+            $scope.ListaSucursales = [];
+
+        })
+    };
 
     SrvSucursales.traerTodas()
     	.then(function (respuesta){
