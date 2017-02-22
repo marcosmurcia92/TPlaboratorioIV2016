@@ -33,6 +33,15 @@ angular.module('app.controllers')
 
     	});
 
+    $scope.ChequearFecha = function(){
+        var realMinDate = new Date(); 
+        realMinDate.setHours(0);  
+        realMinDate.setMinutes(0);  
+        realMinDate.setSeconds(0);  
+
+		$scope.fechaInvalida = $scope.ofer.fechaFin < realMinDate;
+	}
+
 	$scope.Guardar = function(){
 
 		var oferta = JSON.stringify($scope.ofer);

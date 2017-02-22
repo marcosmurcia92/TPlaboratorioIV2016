@@ -2,7 +2,7 @@
 
         <!-- Page Content -->
         <h3>ALTA DE PRODUCTOS</h3>
-        <form class="formContainer" >
+        <form class="formContainer" id="FormIngreso" name="FormIngreso">
 
             
           <label><b>Nombre de Producto</b></label>
@@ -38,7 +38,7 @@
           <label><b>Repetir Password</b></label>
           <input class="loginPassword" type="password" placeholder="Repita Password" name="psw" required> -->
             
-          <button class="loginButton" ng-click="Guardar()">Registrar</button>
+          <button class="loginButton" ng-disabled="(FormIngreso.$invalid)" ng-click="Guardar()">Registrar</button>
       
           <!-- <input type="checkbox" checked="checked"> Remember me -->
         

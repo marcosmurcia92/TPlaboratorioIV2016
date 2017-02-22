@@ -20,9 +20,9 @@
           </select>
 
           <label><b>Fecha del Pedido (Disponible desde {{minDate}} hasta {{maxDate}})</b></label>
-          <input class="loginText" ng-model="ped.fechaPedido" type="date" min="{{minDate}}" max="{{maxDate}}"  name="pedFechaFin" required>
-          <span style="color:#FF0000;float:right;font-size:18;margin-left:200" ng-show='FormIngreso.pedFechaFin.$error.required'>* Ingrese una fecha</span><br>
-          <span style="color:#FF0000;float:right;font-size:18;margin-left:200" ng-show=''>* La fecha ingresada no esta dentro del rango admitido.</span>
+          <input class="loginText" ng-model="ped.fechaPedido" type="date" ng-change="ChequearFechas()" min="{{minDate}}" max="{{maxDate}}"  name="pedFechaPedido" required>
+          <span style="color:#FF0000;float:right;font-size:18;margin-left:200" ng-show='FormIngreso.pedFechaPedido.$error.required'>* Ingrese una fecha</span><br>
+          <span style="color:#FF0000;float:right;font-size:18;margin-left:200" ng-show='(!FormIngreso.pedFechaPedido.$error.required && fechaInvalida)'>* La fecha ingresada no esta dentro del rango admitido.</span>
 
          <label><b>ID del Cliente</b></label>
           <select class="formSelect" ng-model="ped.idCliente"  required>
@@ -32,7 +32,7 @@
           <label><b>Monto Total $</b> <b ng-show="oferta != -1">({{oferta}}% de descuento)</b></label>
          <input class="loginText" ng-model="ped.monto" type="number" placeholder='0' name="pedMonto" readonly required>
             
-          <button class="loginButton" ng-disabled="FormIngreso.$invalid" ng-click="Guardar()">Registrar</button>
+          <button class="loginButton" ng-disabled="(FormIngreso.$invalid || fechaInvalida)" ng-click="Guardar()">Registrar</button>
       
           <!-- <input type="checkbox" checked="checked"> Remember me -->
         

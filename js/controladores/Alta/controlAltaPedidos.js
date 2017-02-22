@@ -12,9 +12,8 @@ angular.module('app.controllers')
 
 	$scope.oferta = -1;
 
-	var dtToday = new Date();
-	var dtMin = dtToday;
-	dtMin.setDate(dtMin.getDate() + 2);
+	var dtMin = new Date();
+    dtMin.setDate(dtMin.getDate() + 2);
 
 	var month = dtMin.getMonth() + 1;
     var day = dtMin.getDate();
@@ -25,7 +24,7 @@ angular.module('app.controllers')
         day = '0' + day.toString();
 
 	$scope.minDate = day + '/' + month + '/' + year;
-	var dtMax = dtToday;
+	var dtMax = new Date();
 	dtMax.setDate(dtMax.getDate() + 5);
 
 	month = dtMax.getMonth() + 1;
@@ -38,16 +37,33 @@ angular.module('app.controllers')
 
 	$scope.maxDate = day + '/' + month + '/' + year;
 
+    $scope.fechaInvalida = true;
+
 	$scope.ListaProductos = [];
 	$scope.ListaSucursales = [];
 	$scope.ListaOfertas = [];
 	$scope.ListaUsuarios = [];
 
 	$scope.ChequearFechas = function(){
-		var checkMin = $scope.ped.fechaPedido < $scope.minDate;
-		var checkMax = $scope.ped.fechaPedido > $scope.maxDate;
+        var realMinDate = new Date(); 
+        realMinDate.setHours(0);  
+        realMinDate.setMinutes(0);  
+        realMinDate.setSeconds(-1);  
+        realMinDate.setDate(realMinDate.getDate() + 2);
+        var realMaxDate = new Date();
+        realMaxDate.setHours(0);  
+        realMaxDate.setMinutes(0);  
+        realMaxDate.setSeconds(0);
+        realMaxDate.setDate(realMaxDate.getDate() + 5);
 
-		return (checkMin || checkMax);
+		var checkMin = $scope.ped.fechaPedido < realMinDate;
+		var checkMax = $scope.ped.fechaPedido > realMaxDate;
+
+        console.log(checkMin + " /// " + checkMax);
+
+		$scope.fechaInvalida = (checkMin || checkMax);
+
+        console.log(realMinDate + " | " + $scope.ped.fechaPedido + " | " + realMaxDate + " | " + $scope.fechaInvalida);
 	}
 
 	SrvProductos.traerTodos()

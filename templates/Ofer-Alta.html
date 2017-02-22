@@ -2,7 +2,7 @@
 
         <!-- Page Content -->
         <h3>ALTA DE OFERTAS</h3>
-        <form class="formContainer" >
+        <form class="formContainer" id="FormIngreso" name="FormIngreso">
 
             
           <label><b>Producto Ofertado ({{ofer.idProd}})</b></label>
@@ -16,12 +16,14 @@
           </select>
 
           <label><b>Fecha de Fin de Oferta</b></label>
-          <input class="loginText" ng-model="ofer.fechaFin" type="date"  name="oferFechaFin" required>
+          <input class="loginText" ng-model="ofer.fechaFin" type="date" name="oferFechaFin" ng-change="ChequearFecha()" name="oferFechaFin" required>
+          <span style="color:#FF0000;float:right;font-size:18;margin-left:200" ng-show='FormIngreso.oferFechaFin.$error.required'>* Ingrese una fecha</span><br>
+          <span style="color:#FF0000;float:right;font-size:18;margin-left:200" ng-show='(!FormIngreso.oferFechaFin.$error.required && fechaInvalida)'>* La fecha ingresada no esta dentro del rango admitido.</span>
 
           <label><b>Porcentaje de Descuento %</b></label>
          <input class="loginText" ng-model="ofer.descuento" type="number" min='1' max="99" placeholder='0' name="oferDescuento" required>
             
-          <button class="loginButton" ng-click="Guardar()">Registrar</button>
+          <button class="loginButton" ng-disabled="(FormIngreso.$invalid || fechaInvalida)" ng-click="Guardar()">Registrar</button>
         
 
       </form>
