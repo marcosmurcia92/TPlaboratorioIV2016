@@ -60,8 +60,13 @@ angular.module('app.controllers', [])
 	    	console.log($rootScope.userActual);
 	    	$state.go('inicio');
 	    }
-	    else
+	    else{
 	    	console.info("no token", $auth.getPayload());
+	    	if(!$auth.getPayload()){
+	    		alert("Datos Ingresados Incorrectamente.");
+	    	}
+	    }
+	    	
 	  })
 	  .catch(function(response) {
 	    console.info("NO volvio bien", response);

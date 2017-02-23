@@ -121,7 +121,7 @@ angular.module('app.controllers')
     			if(idxSuc != -1){
     				$scope.oferta = $scope.BuscarOferta($scope.ped.idProd,$scope.ped.idSuc);
     				if($scope.oferta != -1){
-    					$scope.ped.monto = $scope.ListaProductos[idxProd].precio * $scope.ped.cantPedida * ($scope.oferta / 100);
+    					$scope.ped.monto = $scope.ListaProductos[idxProd].precio * $scope.ped.cantPedida * (1 - $scope.oferta / 100);
     				}else{
     					$scope.ped.monto = $scope.ListaProductos[idxProd].precio * $scope.ped.cantPedida;
     				}

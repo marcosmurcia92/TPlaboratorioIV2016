@@ -53,6 +53,13 @@ $app->get('/encuestas[/]', function ($request, $response, $args) {
     return $response;
 });
 
+$app->get('/encuestas/{id}', function ($request, $response, $args) {
+    $datos = Encuesta::TraerUnaEncuesta($args['id']);
+    $response->write(json_encode($datos)); 
+    
+    return $response;
+});
+
 $app->get('/productos[/]', function ($request, $response, $args) {
     $datos = Producto::TraerTodosLosProductos();
     $response->write(json_encode($datos)); 
@@ -98,6 +105,13 @@ $app->get('/usuarios/{id}', function ($request, $response, $args) {
 
 $app->get('/usuarios/sucursal/{id}', function ($request, $response, $args) {
     $datos = Usuario::TraerUnUsuarioPorSucursal($args['id']);
+    $response->write(json_encode($datos)); 
+    
+    return $response;
+});
+
+$app->get('/usuarios/verificar/{mail}', function ($request, $response, $args) {
+    $datos = Usuario::VerificarExistente($args['mail']);
     $response->write(json_encode($datos)); 
     
     return $response;

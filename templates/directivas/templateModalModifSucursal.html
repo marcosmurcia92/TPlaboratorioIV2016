@@ -1,24 +1,30 @@
 <div style="width:100%;" align=center>
 
-	<form class="formContainer" >
+	<form class="formContainer" id="FormModificacion" name="FormModificacion">
             
           <label><b>Nombre de Sucursal</b></label>
           <input class="loginText" ng-model="miSucursal.nombre" type="text" placeholder="Ingrese nombre de sucursal" name="sucNom" required>
+          <span id="lblNombre" style="color:#FF0000;float:right;font-size:18" ng-show='FormModificacion.sucNom.$error.required'>* El nombre es requerido</span>
 
           <label><b>Dirección</b></label>
           <input class="loginText" ng-model="miSucursal.direccion" type="text" placeholder="Ingrese dirección del local" name="sucDir" required>
+          <span id="lblDir" style="color:#FF0000;float:right;font-size:18" ng-show='FormModificacion.sucDir.$error.required'>* La dirección es requerida</span>
 
           <label><b>Localidad</b></label>
           <input class="loginText" ng-model="miSucursal.localidad" type="text" placeholder="Ingrese la localidad" name="sucLoc" required>
+          <span id="lblLocalidad" style="color:#FF0000;float:right;font-size:18" ng-show='FormModificacion.sucLoc.$error.required'>* La localidad es requerida</span>
 
           <label><b>Latitud</b></label>
           <input class="loginText" ng-model="miSucursal.lat" type="text" placeholder="Ingrese latitud" name="sucLat" required>
+          <span id="lblLat" style="color:#FF0000;float:right;font-size:18" ng-show='FormModificacion.sucLat.$error.required'>* La latitud es requerida</span>
 
           <label><b>Longitud</b></label>
           <input class="loginText" ng-model="miSucursal.lng" type="text" placeholder="Ingrese longitud" name="sucLng" required>
+          <span id="lblLng" style="color:#FF0000;float:right;font-size:18" ng-show='FormModificacion.sucLng.$error.required'>* La longitud es requerida</span>
 
           <label><b>Teléfono</b></label>
           <input class="loginText" ng-model="miSucursal.telefono" type="text" placeholder="Ingrese número de teléfono" name="sucTel" required>
+          <span id="lblTelefono" style="color:#FF0000;float:right;font-size:18" ng-show='FormModificacion.sucTel.$error.required'>* El Teléfono es requerido</span>
 
           <button class="btn btn-info" ng-show="willModifyPhotos == 1" ng-click="TogglePhotoUpload()"><span class="glyphicon glyphicon-ok" aria-hidden="true"></span></button>
           <button class="btn btn-disabled" ng-show="willModifyPhotos == 0" ng-click="TogglePhotoUpload()"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></button> 
@@ -26,6 +32,7 @@
 
           <label ng-show="willModifyPhotos == 1"><b>Fotos de la Sucursal:</b></label>
           <input ng-show = "willModifyPhotos == 1" class="loginText" type="file" nv-file-select uploader="SubidorDeArchivos">
+          <span ng-show = "willModifyPhotos == 1" id="lblFotos" style="color:#FF0000;float:right;font-size:18" ng-show='SubidorDeArchivos.queue.length != 3'>* Se necesitan 3 fotos</span>
 
           <li ng-show="willModifyPhotos == 1" ng-repeat="item in SubidorDeArchivos.queue" >
             Archivo: <span ng-bind="item.file.name"></span><br/>
@@ -40,7 +47,7 @@
             </button>
           </li>  
             
-          <button class="loginButton" ng-click="Guardar()">Registrar</button>
+          <button class="loginButton" ng-disabled="(FormModificacion.$invalid || (willModifyPhotos == 1 && SubidorDeArchivos.queue.length != 3))" ng-click="Guardar()">Registrar</button>
 
       </form>
 

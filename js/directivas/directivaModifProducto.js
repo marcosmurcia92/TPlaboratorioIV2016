@@ -54,6 +54,7 @@ angular
 
 			$scope.CerrarModal = function(){
 				//$interval.cancel($scope.refreshSelects);
+				$scope.miProducto = {};
 				$scope.cancelmodif();
 				document.getElementById('id02').style.display='none';
 			}

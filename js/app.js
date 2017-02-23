@@ -7,6 +7,7 @@ angular.module('app', ['app.controllers', 'ngMap', 'ngTableExport', 'ngAnimate',
 	if($auth.isAuthenticated()){
 		console.info("payload",$auth.getPayload());
 		console.info("token",$auth.getToken());
+		$rootScope.userActual.id = $auth.getPayload().id;
 		$rootScope.userActual.login = true;
 		$rootScope.userActual.nombre = $auth.getPayload().nombre;
 		$rootScope.userActual.cargo = $auth.getPayload().cargo;

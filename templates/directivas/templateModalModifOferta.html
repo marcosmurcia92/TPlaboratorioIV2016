@@ -1,24 +1,28 @@
 <div style="width:100%;" align=center>
 
-	<form class="formContainer" >
+	<form class="formContainer" id="FormModificacion" name="FormModificacion">
             
           <label><b>Producto Ofertado ({{miOferta.idProd}})</b></label>
-          <select class="formSelect" id="oferIdProd" ng-model="miOferta.idProd"  required>
+          <select class="formSelect" id="oferIdProd" ng-model="miOferta.idProd" name="oferProd" required>
               <option ng-repeat="prod in ListaProductos" value="{{prod.idProd}}">{{prod.idProd}}  {{prod.nombre}}</option>  
           </select>
+          <span id="lblProducto" style="color:#FF0000;float:right;font-size:18" ng-show='FormModificacion.oferProd.$error.required'>* Producto no elegido</span>
 
           <label><b>Sucursal de Origen</b></label>
-          <select class="formSelect" id="oferIdSuc" ng-model="miOferta.idSuc"  required>
+          <select class="formSelect" id="oferIdSuc" ng-model="miOferta.idSuc" name="oferSuc" required>
               <option ng-repeat="suc in ListaSucursales" value="{{suc.idSuc}}">{{suc.idSuc}}  {{suc.nombre}}</option>  
           </select>
+          <span id="lblSucursal" style="color:#FF0000;float:right;font-size:18" ng-show='FormModificacion.oferSuc.$error.required'>* Sucursal no elegida</span>
 
           <label><b>Fecha de Fin de Oferta</b></label>
-          <input class="loginText" ng-model="miOferta.fechaFin" type="date"  name="miOfertaFechaFin" required>
+          <input class="loginText" ng-model="miOferta.fechaFin" type="date"  name="oferFechaFin" required>
+          <span style="color:#FF0000;float:right;font-size:18;margin-left:200" ng-show='FormModificacion.oferFechaFin.$error.required'>* Ingrese una fecha</span>
 
           <label><b>Porcentaje de Descuento %</b></label>
-         <input class="loginText" ng-model="miOferta.descuento" type="number" min='1' max="99" placeholder='0' name="miOfertaDescuento" required>
+         <input class="loginText" ng-model="miOferta.descuento" type="number" min='1' max="99" placeholder='0' name="oferDescuento" required>
+          <span id="lblDescuento" style="color:#FF0000;float:right;font-size:18" ng-show='FormModificacion.oferDescuento.$error.required'>* El porcentaje de descuento es requerido</span>
             
-          <button class="loginButton" ng-click="Guardar()">Registrar</button>
+          <button class="loginButton" ng-disabled="FormModificacion.$invalid" ng-click="Guardar()">Registrar</button>
 
   </form>
 

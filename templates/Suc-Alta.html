@@ -7,24 +7,31 @@
             
           <label><b>Nombre de Sucursal</b></label>
           <input class="loginText" ng-model="suc.nombre" type="text" placeholder="Ingrese nombre de sucursal" name="sucNom" required>
+          <span id="lblNombre" style="color:#FF0000;float:right;font-size:18" ng-show='FormIngreso.sucNom.$error.required'>* El nombre es requerido</span>
 
           <label><b>Dirección</b></label>
           <input class="loginText" ng-model="suc.direccion" type="text" placeholder="Ingrese dirección del local" name="sucDir" required>
+          <span id="lblDir" style="color:#FF0000;float:right;font-size:18" ng-show='FormIngreso.sucDir.$error.required'>* La dirección es requerida</span>
 
           <label><b>Localidad</b></label>
           <input class="loginText" ng-model="suc.localidad" type="text" placeholder="Ingrese la localidad" name="sucLoc" required>
+          <span id="lblLocalidad" style="color:#FF0000;float:right;font-size:18" ng-show='FormIngreso.sucLoc.$error.required'>* La localidad es requerida</span>
 
           <label><b>Latitud</b></label>
           <input class="loginText" ng-model="suc.lat" type="text" placeholder="Ingrese latitud" name="sucLat" required>
+          <span id="lblLat" style="color:#FF0000;float:right;font-size:18" ng-show='FormIngreso.sucLat.$error.required'>* La latitud es requerida</span>
 
           <label><b>Longitud</b></label>
           <input class="loginText" ng-model="suc.lng" type="text" placeholder="Ingrese longitud" name="sucLng" required>
+          <span id="lblLng" style="color:#FF0000;float:right;font-size:18" ng-show='FormIngreso.sucLng.$error.required'>* La longitud es requerida</span>
 
           <label><b>Teléfono</b></label>
           <input class="loginText" ng-model="suc.telefono" type="text" placeholder="Ingrese número de teléfono" name="sucTel" required>
+          <span id="lblTelefono" style="color:#FF0000;float:right;font-size:18" ng-show='FormIngreso.sucTel.$error.required'>* El Teléfono es requerido</span>
 
           <label><b>Fotos de la Sucursal:</b></label>
           <input class="loginText" type="file" nv-file-select uploader="SubidorDeArchivos">
+          <span id="lblFotos" style="color:#FF0000;float:right;font-size:18" ng-show='SubidorDeArchivos.queue.length != 3'>* Se necesitan 3 fotos</span>
 
           <li ng-repeat="item in SubidorDeArchivos.queue" >
             Archivo: <span ng-bind="item.file.name"></span><br/>
@@ -45,7 +52,7 @@
           <label><b>Repetir Password</b></label>
           <input class="loginPassword" type="password" placeholder="Repita Password" name="psw" required> -->
             
-          <button class="loginButton" ng-disabled="(FormIngreso.$invalid)" ng-click="Guardar()">Registrar</button>
+          <button class="loginButton" ng-disabled="(FormIngreso.$invalid || SubidorDeArchivos.queue.length != 3)" ng-click="Guardar()">Registrar</button>
       
           <!-- <input type="checkbox" checked="checked"> Remember me -->
         

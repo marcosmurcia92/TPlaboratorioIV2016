@@ -10,6 +10,8 @@ angular
 
 		this.traerUnoPorSucursal = TraerUnoPorSucursal;
 
+		this.verificarExistente = VerificarExistente;
+
 		this.borrarUsuario = BorrarUsuario;
 
 		this.modificarUsuario = ModificarUsuario;
@@ -97,6 +99,23 @@ angular
 		function TraerUnoPorSucursal(idSucu){
 
 			return $http.get(url+"sucursal/"+idSucu)
+				.then(function (respuesta){
+
+					console.log(respuesta);
+
+					return respuesta;
+
+				}).catch(function (error){
+
+					console.info("error", error);
+
+				})
+
+		};
+
+		function VerificarExistente(mail){
+
+			return $http.get(url+"verificar/"+mail)
 				.then(function (respuesta){
 
 					console.log(respuesta);

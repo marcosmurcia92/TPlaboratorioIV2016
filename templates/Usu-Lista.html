@@ -20,10 +20,10 @@
 					<td>{{usu.cargo}}</td>
 					<td>
 						<p ng-show="(userActual.cargo != 'Encargado' && usu.habilitado == 0)">DESHABILITADO</p>
-						<p ng-show="(userActual.cargo != 'Encargado' && usu.habilitado == 1)">HABILITADO</p>
+						<p ng-show="(userActual.cargo != 'Encargado' && usu.habilitado == 1) || (usu.cargo == 'Administrador')">HABILITADO</p>
 
-						<button class="btn btn-disabled" ng-show="(userActual.cargo == 'Encargado' && usu.habilitado == 0)" ng-click="ToggleUser(usu)">DESHABILITADO</button>
-						<button class="btn btn-info" ng-show="(userActual.cargo == 'Encargado' && usu.habilitado == 1)" ng-disabled="usu.idUsu == userActual.id" ng-click="ToggleUser(usu)">HABILITADO</button>
+						<button class="btn btn-disabled" ng-show="(userActual.cargo == 'Encargado' && usu.habilitado == 0 && usu.cargo != 'Administrador')" ng-click="ToggleUser(usu)">DESHABILITADO</button>
+						<button class="btn btn-info" ng-show="(userActual.cargo == 'Encargado' && usu.habilitado == 1 && usu.cargo != 'Administrador')" ng-disabled="usu.idUsu == userActual.id" ng-click="ToggleUser(usu)">HABILITADO</button>
 					</td>
 					<td>
 						 <p ng-show="usu.idSuc == 0">TODAS</p>

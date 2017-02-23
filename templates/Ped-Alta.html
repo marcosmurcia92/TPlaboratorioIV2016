@@ -6,18 +6,21 @@
           <form class="formContainer"  id="FormIngreso" name="FormIngreso">
 
             
-          <label><b>Producto Pedido ({{ped.idProd}})</b></label>
-          <select class="formSelect" ng-model="ped.idProd"  required>
+          <label><b>Producto Pedido</b></label>
+          <select class="formSelect" ng-model="ped.idProd" name="pedProd" required>
               <option ng-repeat="prod in ListaProductos" value="{{prod.idProd}}">{{prod.idProd}}  {{prod.nombre}}</option>  
           </select>
+          <span id="lblProducto" style="color:#FF0000;float:right;font-size:18" ng-show='ped.idProd == -1'>* Producto no elegido</span>
 
           <label><b>Cantidad Pedida</b></label>
           <input class="loginText" ng-model="ped.cantPedida" type="number" placeholder="Ingrese cantidad" name="pedCantPedida" required>
+          <span id="lblCantidad" style="color:#FF0000;float:right;font-size:18" ng-show='FormIngreso.pedCantPedida.$error.required'>* La cantidad es requerida</span>
 
           <label><b>Sucursal de Origen</b></label>
-          <select class="formSelect" ng-model="ped.idSuc"  required>
+          <select class="formSelect" ng-model="ped.idSuc" name="pedSuc" required>
               <option ng-repeat="suc in ListaSucursales" value="{{suc.idSuc}}">{{suc.idSuc}}  {{suc.nombre}}</option>  
           </select>
+          <span id="lblSucursal" style="color:#FF0000;float:right;font-size:18" ng-show='ped.idSuc == -1'>* Sucursal no elegida</span>
 
           <label><b>Fecha del Pedido (Disponible desde {{minDate}} hasta {{maxDate}})</b></label>
           <input class="loginText" ng-model="ped.fechaPedido" type="date" ng-change="ChequearFechas()" min="{{minDate}}" max="{{maxDate}}"  name="pedFechaPedido" required>
@@ -25,9 +28,10 @@
           <span style="color:#FF0000;float:right;font-size:18;margin-left:200" ng-show='(!FormIngreso.pedFechaPedido.$error.required && fechaInvalida)'>* La fecha ingresada no esta dentro del rango admitido.</span>
 
          <label><b>ID del Cliente</b></label>
-          <select class="formSelect" ng-model="ped.idCliente"  required>
-              <option ng-repeat="cl in ListaUsuarios" ng-if="cl.cargo == 'Cliente'" value="{{cl.idUsu}}">{{cl.idUsu}}  {{cl.nombre}}</option>  
+          <select class="formSelect" ng-model="ped.idCliente" name="pedCliente" required>
+              <option ng-repeat="cl in ListaUsuarios" ng-if="(userActual.cargo != 'Cliente' && cl.cargo == 'Cliente') || (userActual.cargo == 'Cliente' && cl.idUsu == userActual.id)" value="{{cl.idUsu}}">{{cl.idUsu}}  {{cl.nombre}}</option>  
           </select>
+          <span id="lblCliente" style="color:#FF0000;float:right;font-size:18" ng-show='ped.idCliente == -1'>* ID de Cliente no elegido</span>
 
           <label><b>Monto Total $</b> <b ng-show="oferta != -1">({{oferta}}% de descuento)</b></label>
          <input class="loginText" ng-model="ped.monto" type="number" placeholder='0' name="pedMonto" readonly required>

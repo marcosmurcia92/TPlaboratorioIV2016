@@ -6,6 +6,8 @@ angular
 
 		this.traerTodas = TraerTodas;
 
+		this.traerUna = TraerUna;
+
 		this.borrarEncuesta = BorrarEncuesta;
 
 		console.log("rutaEnc", factoryRutas.RutaEncuestas);
@@ -37,6 +39,23 @@ angular
 		function TraerTodas(){
 
 			return $http.get(url)
+				.then(function (respuesta){
+
+					console.log(respuesta);
+
+					return respuesta;
+
+				}).catch(function (error){
+
+					console.info("error", error);
+
+				})
+
+		};
+
+		function TraerUna(idPed){
+
+			return $http.get(url+idPed)
 				.then(function (respuesta){
 
 					console.log(respuesta);

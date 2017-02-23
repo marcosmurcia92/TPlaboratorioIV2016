@@ -1,0 +1,38 @@
+<div style="width:100%;" align=center>
+
+	<h2><b>ENCUESTA DE SATISFACCIÓN</b></h2>
+	<h3>Calidad del Producto: ({{miEncuesta.valorProducto}})</h3>
+	<span uib-rating ng-model="miEncuesta.valorProducto" max="max" read-only="isReadonly" on-hover="hoveringOver(value)" on-leave="overStar = null" titles="['one','two','three']" aria-labelledby="default-rating"></span><br><br>
+	<h3>Calidad de Atención:</h3>
+	<span uib-rating ng-model="miEncuesta.valorAtencion" max="max" read-only="isReadonly" on-hover="hoveringOver(value)" on-leave="overStar = null" titles="['one','two','three']" aria-labelledby="default-rating"></span><br><br>
+	<h3>Tiempo de Delivery:</h3>
+	<span uib-rating ng-model="miEncuesta.valorDemora" max="max" read-only="isReadonly" on-hover="hoveringOver(value)" on-leave="overStar = null" titles="['one','two','three']" aria-labelledby="default-rating"></span><br><br>
+	<h3>Comentario o Sugerencia: (máx. 300 caracteres)</h3>
+	<p style="color:gray;">(opcional)</p>
+	<textarea ng-model="miEncuesta.comentario" class="form-control" style="width:80%;" rows="5"></textarea><br>
+
+	<button class="btn btn-info" ng-show="willAddPhotos == 1" ng-click="TogglePhotoUpload()"><span class="glyphicon glyphicon-ok" aria-hidden="true"></span></button>
+      <button class="btn btn-disabled" ng-show="willAddPhotos == 0" ng-click="TogglePhotoUpload()"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></button> 
+      <label><b> Agregar fotos del producto (opcional)</b></label><br><br>
+
+      <label ng-show="willAddPhotos == 1"><b>Fotos del Producto (elija 3):</b></label>
+      <input ng-show = "willAddPhotos == 1" id="fileInput" class="loginText" type="file" nv-file-select uploader="SubidorDeArchivos">
+
+      <li ng-show="willAddPhotos == 1" ng-repeat="item in SubidorDeArchivos.queue" >
+        Archivo: <span ng-bind="item.file.name"></span><br/>
+        <div ng-show="SubidorDeArchivos.isHTML5" ng-thumb="{ file: item._file, height: 100 }"></div>
+
+        <button type="button" class="btn btn-warning btn-xs" ng-click="item.cancel()" ng-disabled="!item.isUploading">
+          <span class="glyphicon glyphicon-ban-circle"></span> Cancel
+        </button>
+
+        <button type="button" class="btn btn-danger btn-xs" ng-click="item.remove()">
+          <span class="glyphicon glyphicon-trash"></span> Remove
+        </button>
+      </li>  
+
+	<button ng-disabled="((miEncuesta.valorAtencion == null || miEncuesta.valorProducto == null || miEncuesta.valorDemora == null) || (willAddPhotos == 1 && SubidorDeArchivos.queue.length != 3))" class="btn btn-success" ng-click="Guardar()">REGISTRAR ENCUESTA</button>
+
+  <button class="btn btn-danger" ng-click="CerrarModal()">CERRAR MODAL</button> 
+
+</div>

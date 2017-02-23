@@ -7,17 +7,15 @@
             
           <label><b>Nombre de Producto</b></label>
           <input class="loginText" ng-model="prod.nombre" type="text" placeholder="Ingrese nombre de producto" name="prodNom" required>
+          <span id="lblNombre" style="color:#FF0000;float:right;font-size:18" ng-show='FormIngreso.prodNom.$error.required'>* El nombre es requerido</span>
 
           <label><b>Precio $</b></label>
           <input class="loginText" ng-model="prod.precio" type="number" placeholder="Ingrese precio" name="prodPrecio" required>
+          <span id="lblPrecio" style="color:#FF0000;float:right;font-size:18" ng-show='FormIngreso.prodPrecio.$error.required'>* El precio es requerido</span>
 
-          <!-- <div nv-file-drop="" uploader="SubidorDeArchivos">
-                    <div nv-file-over="" uploader="SubidorDeArchivos" over-class="another-file-over-class" class="well my-drop-zone">
-                        Arrastrá acá para subir una foto (Seleccionar 3 fotos)
-                    </div>
-          </div> -->
-          <label><b>Fotos del Producto</b></label>
+          <label><b>Fotos del Producto (Elija 3):</b></label>
           <input class="loginText" type="file" nv-file-select uploader="SubidorDeArchivos">
+          <span id="lblFotos" style="color:#FF0000;float:right;font-size:18" ng-show='SubidorDeArchivos.queue.length != 3'>* Se necesitan 3 fotos</span>
 
           <li ng-repeat="item in SubidorDeArchivos.queue" >
             Archivo: <span ng-bind="item.file.name"></span><br/>
@@ -31,14 +29,8 @@
               <span class="glyphicon glyphicon-trash"></span> Remove
             </button>
           </li>  
-
-          <!-- <label><b>Password</b></label>
-          <input class="loginPassword" type="password" placeholder="Ingrese Password" name="psw" required>
-
-          <label><b>Repetir Password</b></label>
-          <input class="loginPassword" type="password" placeholder="Repita Password" name="psw" required> -->
             
-          <button class="loginButton" ng-disabled="(FormIngreso.$invalid)" ng-click="Guardar()">Registrar</button>
+          <button class="loginButton" ng-disabled="(FormIngreso.$invalid || SubidorDeArchivos.queue.length != 3)" ng-click="Guardar()">Registrar</button>
       
           <!-- <input type="checkbox" checked="checked"> Remember me -->
         

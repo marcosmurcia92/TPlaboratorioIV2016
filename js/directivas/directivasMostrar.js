@@ -34,6 +34,17 @@ angular
 
 	})
 
+	.directive('modalEncuesta', function(){
+
+		return {
+			scope: {miEncuesta: '=encuestaporparametro'},
+			replace: true,
+			restrict: 'E',
+			templateUrl: 'templates/directivas/templateModalEncuesta.html'
+		};
+
+	})
+
 	.directive('modalOfertas', function(SrvOfertas){
 
 		function ofertasCtrl($scope){

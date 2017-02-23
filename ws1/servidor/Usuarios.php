@@ -161,6 +161,17 @@ class Usuario
 		$usuarioBuscado= $consulta->fetchObject('usuario');
 		return $usuarioBuscado;	
 	}
+
+	public static function VerificarExistente($mailUsuario)
+	{
+		$objetoAccesoDato = AccesoDatos::dameUnObjetoAcceso(); 
+		$consulta =$objetoAccesoDato->RetornarConsulta("SELECT * FROM usuarios WHERE email=:email");
+		//$consulta =$objetoAccesoDato->RetornarConsulta("CALL TraerTodasLasPersonas() ");
+		$consulta->bindValue(':email', $mailUsuario, PDO::PARAM_STR);
+		$consulta->execute();			
+		$usuarioBuscado= $consulta->fetchObject('usuario');
+		return $usuarioBuscado;	
+	}
 	
 	public static function BorrarUsuario($idParametro)
 	{	

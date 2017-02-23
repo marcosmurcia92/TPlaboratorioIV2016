@@ -1,19 +1,22 @@
 <div style="width:100%;" align=center>
 
-	<form class="formContainer" >
+	<form class="formContainer" id="FormModificacion" name="FormModificacion">
             
           <label><b>Nombre de Producto</b></label>
           <input class="loginText" ng-model="miProducto.nombre" type="text" placeholder="Ingrese nombre de producto" name="prodNom" required>
+          <span id="lblNombre" style="color:#FF0000;float:right;font-size:18" ng-show='FormModificacion.prodNom.$error.required'>* El nombre es requerido</span>
 
           <label><b>Precio $</b></label>
           <input class="loginText" ng-model="miProducto.precio" type="number" placeholder="Ingrese precio" name="prodPrecio" required>
+          <span id="lblPrecio" style="color:#FF0000;float:right;font-size:18" ng-show='FormModificacion.prodPrecio.$error.required'>* El precio es requerido</span>
 
           <button class="btn btn-info" ng-show="willModifyPhotos == 1" ng-click="TogglePhotoUpload()"><span class="glyphicon glyphicon-ok" aria-hidden="true"></span></button>
           <button class="btn btn-disabled" ng-show="willModifyPhotos == 0" ng-click="TogglePhotoUpload()"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></button> 
-          <label><b> Modificar fotos de la sucursal</b></label><br><br>
+          <label><b> Modificar fotos del producto</b></label><br><br>
 
-          <label ng-show="willModifyPhotos == 1"><b>Fotos de la Sucursal:</b></label>
+          <label ng-show="willModifyPhotos == 1"><b>Fotos del Producto:</b></label>
           <input ng-show = "willModifyPhotos == 1" class="loginText" type="file" nv-file-select uploader="SubidorDeArchivos">
+          <span ng-show = "willModifyPhotos == 1" id="lblFotos" style="color:#FF0000;float:right;font-size:18" ng-show='SubidorDeArchivos.queue.length != 3'>* Se necesitan 3 fotos</span>
 
           <li ng-show="willModifyPhotos == 1" ng-repeat="item in SubidorDeArchivos.queue" >
             Archivo: <span ng-bind="item.file.name"></span><br/>
@@ -28,7 +31,7 @@
             </button>
           </li>  
             
-          <button class="loginButton" ng-click="Guardar()">Registrar</button>
+          <button class="loginButton" ng-disabled="(FormModificacion.$invalid || (willModifyPhotos == 1 && SubidorDeArchivos.queue.length != 3))" ng-click="Guardar()">Registrar</button>
 
       </form>
 

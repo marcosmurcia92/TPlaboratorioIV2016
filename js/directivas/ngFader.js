@@ -23,16 +23,18 @@
 
 		//List your images here. 
 		$scope.imgUpdate = $interval(function(){
-			$scope.images = [{
-				src: 'img/'+$scope.miObjeto.foto1,
-				alt: 'Foto 1'
-			}, {
-				src: 'img/'+$scope.miObjeto.foto2,
-				alt: 'Foto 2'
-			}, {
-				src: 'img/'+$scope.miObjeto.foto3,
-				alt: 'Foto 3'
-			}]
+			if($scope.miObjeto.foto1 != 'sin foto'){
+				$scope.images = [{
+					src: 'img/'+$scope.miObjeto.foto1,
+					alt: 'Foto 1'
+				}, {
+					src: 'img/'+$scope.miObjeto.foto2,
+					alt: 'Foto 2'
+				}, {
+					src: 'img/'+$scope.miObjeto.foto3,
+					alt: 'Foto 3'
+				}]
+			}
 		},100);
 		
 

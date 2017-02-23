@@ -32,6 +32,11 @@ angular.module('app.controllers')
     $scope.PedidoParaModificar = {};
 
     $scope.EncuestaRegistrada = {};
+    $scope.EncuestaParaMostrar = {
+        foto1 : "sin foto",
+        foto2 : "sin foto",
+        foto3 : "sin foto"
+    };
 
     $scope.MostrarProducto = function(idProducto){
         console.log("MI Producto ANTES", $scope.ProductoParaMostrar);
@@ -121,14 +126,34 @@ angular.module('app.controllers')
 
     $scope.RealizarEncuesta = function(pedido){
         $scope.PedidoSeleccionado = pedido;
+        console.info("PEDIDO PRESELECCIONADO", $scope.PedidoSeleccionado);
         document.getElementById('id04').style.display='block';
     };
 
-    $scope.RegistrarEncuesta = function(encuesta){
-        encuesta.idPed = $scope.PedidoSeleccionado.idPed;
-        encuesta.idCliente = $scope.PedidoSeleccionado.idCliente;
-        console.info("Encuesta Recibida", encuesta);
-        var jsonEncuesta = JSON.stringify(encuesta);
+    $scope.VerEncuesta = function(pedido){
+        SrvEncuestas.traerUna(pedido.idPed)
+            .then(function (respuesta){
+                console.info("encuesta encontrada", respuesta);
+                $scope.EncuestaParaMostrar = respuesta.data;
+                document.getElementById('id06').style.display='block';
+            }).catch(function (error){
+
+                $scope.EncuestaParaMostrar = {
+                    foto1 : "sin foto",
+                    foto2 : "sin foto",
+                    foto3 : "sin foto"
+                };
+
+            })
+        
+    };
+
+    $scope.RegistrarEncuesta = function(){
+        console.info("PEDIDO SELECCIONADO", $scope.PedidoSeleccionado);
+        $scope.EncuestaRegistrada.idPed = $scope.PedidoSeleccionado.idPed;
+        $scope.EncuestaRegistrada.idCliente = $scope.PedidoSeleccionado.idCliente;
+        console.info("Encuesta Recibida", $scope.EncuestaRegistrada);
+        var jsonEncuesta = JSON.stringify($scope.EncuestaRegistrada);
         SrvEncuestas.insertarEncuesta(jsonEncuesta)
             .then(function (respuesta){
                 console.info("Respuesta", respuesta);

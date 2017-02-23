@@ -5,23 +5,26 @@
         <form class="formContainer" id="FormIngreso" name="FormIngreso">
 
             
-          <label><b>Producto Ofertado ({{ofer.idProd}})</b></label>
-          <select class="formSelect" ng-model="ofer.idProd"  required>
+          <label><b>Producto Ofertado</b></label>
+          <select class="formSelect" ng-model="ofer.idProd" name="oferProd" required>
               <option ng-repeat="prod in ListaProductos" value="{{prod.idProd}}">{{prod.idProd}}  {{prod.nombre}}</option>  
           </select>
+          <span id="lblProducto" style="color:#FF0000;float:right;font-size:18" ng-show='FormIngreso.oferProd.$error.required'>* Producto no elegido</span>
 
           <label><b>Sucursal de Origen</b></label>
-          <select class="formSelect" ng-model="ofer.idSuc"  required>
+          <select class="formSelect" ng-model="ofer.idSuc" name="oferSuc" required>
               <option ng-repeat="suc in ListaSucursales" value="{{suc.idSuc}}">{{suc.idSuc}}  {{suc.nombre}}</option>  
           </select>
+          <span id="lblSucursal" style="color:#FF0000;float:right;font-size:18" ng-show='FormIngreso.oferSuc.$error.required'>* Sucursal no elegida</span>
 
           <label><b>Fecha de Fin de Oferta</b></label>
           <input class="loginText" ng-model="ofer.fechaFin" type="date" name="oferFechaFin" ng-change="ChequearFecha()" name="oferFechaFin" required>
           <span style="color:#FF0000;float:right;font-size:18;margin-left:200" ng-show='FormIngreso.oferFechaFin.$error.required'>* Ingrese una fecha</span><br>
-          <span style="color:#FF0000;float:right;font-size:18;margin-left:200" ng-show='(!FormIngreso.oferFechaFin.$error.required && fechaInvalida)'>* La fecha ingresada no esta dentro del rango admitido.</span>
+          <span style="color:#FF0000;float:right;font-size:18;margin-left:200" ng-show='(!FormIngreso.oferFechaFin.$error.required && fechaInvalida)'>* Ingrese una fecha posterior al día actual</span>
 
           <label><b>Porcentaje de Descuento %</b></label>
          <input class="loginText" ng-model="ofer.descuento" type="number" min='1' max="99" placeholder='0' name="oferDescuento" required>
+          <span id="lblDescuento" style="color:#FF0000;float:right;font-size:18" ng-show='FormIngreso.oferDescuento.$error.required'>* El porcentaje de descuento es requerido</span>
             
           <button class="loginButton" ng-disabled="(FormIngreso.$invalid || fechaInvalida)" ng-click="Guardar()">Registrar</button>
         
